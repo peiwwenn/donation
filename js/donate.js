@@ -32,14 +32,14 @@ window.submitDonation = async () => {
   const qty = document.getElementById("quantity").value;
 
   if (!selectedLocation) {
-    alert("Please select a pickup location on the map");
+    alert("Please select a location on the map");
     return;
   }
 
   await addDoc(collection(db, "donations"), {
     description: desc,
     quantity: qty,
-    location: selectedLocation, // ✅ lat/lng object
+    location: selectedLocation, // 👈 ADDED HERE
     status: "pending",
     createdAt: serverTimestamp()
   });
