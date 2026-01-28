@@ -902,19 +902,19 @@ section,
   margin-bottom: 20px;
 }
 
-.about .book-a-table {
+.about .create-donation {
   text-align: center;
   border: 4px solid color-mix(in srgb, var(--default-color), transparent 30%);
   padding: 22px;
 }
 
-.about .book-a-table h3 {
+.about .create-donation h3 {
   font-family: var(--default-font);
   margin: 0 0 0 0;
   font-size: 24px;
 }
 
-.about .book-a-table p {
+.about .create-donation p {
   color: var(--accent-color);
   font-weight: 500;
   font-size: 28px;
@@ -1648,9 +1648,165 @@ section,
   background: color-mix(in srgb, var(--accent-color), transparent 20%);
 }
 
-/*--------------------------------------------------------------
-# Starter Section Section
---------------------------------------------------------------*/
-.starter-section {
-  /* Add your styles here */
+/* ----------------------------
+   Auth Page (Login/Register)
+---------------------------- */
+.auth-page main { padding-top: 90px; } /* fixed header spacing */
+
+.auth-card{
+  background: var(--surface-color);
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+  border-radius: 12px;
+  padding: 28px;
+  box-shadow: 0px 0 20px rgba(0,0,0,0.08);
+}
+
+.auth-title{
+  font-family: var(--default-font);
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--heading-color);
+}
+
+.auth-subtitle{
+  margin: 0;
+  color: color-mix(in srgb, var(--default-color), transparent 35%);
+}
+
+.auth-link{
+  color: var(--accent-color);
+  font-weight: 500;
+}
+
+.auth-link:hover{
+  color: color-mix(in srgb, var(--accent-color), transparent 25%);
+}
+
+.auth-btn{
+  padding: 12px 18px;
+  border-radius: 8px;
+}
+
+.auth-page .btn-primary{
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+.auth-page .btn-primary:hover{
+  background: color-mix(in srgb, var(--accent-color), transparent 15%);
+  border-color: color-mix(in srgb, var(--accent-color), transparent 15%);
+}
+
+.auth-divider{
+  position: relative;
+  text-align: center;
+}
+
+.auth-divider::before,
+.auth-divider::after{
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 35%;
+  height: 1px;
+  background: color-mix(in srgb, var(--default-color), transparent 80%);
+}
+
+.auth-divider::before{ left: 0; }
+.auth-divider::after{ right: 0; }
+
+.auth-divider span{
+  display: inline-block;
+  padding: 0 12px;
+  color: color-mix(in srgb, var(--default-color), transparent 45%);
+  font-size: 14px;
+}
+
+.auth-social-btn{
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 80%);
+  background: var(--surface-color);
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.auth-social-btn:hover{
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+.auth-page main { padding-top: 90px; }
+
+.auth-card{
+  background: var(--surface-color);
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+  border-radius: 12px;
+  padding: 28px;
+  box-shadow: 0px 0 20px rgba(0,0,0,0.08);
+}
+
+.auth-title{
+  font-family: var(--default-font);
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--heading-color);
+}
+
+.auth-subtitle{
+  margin: 0;
+  color: color-mix(in srgb, var(--default-color), transparent 35%);
+}
+
+.auth-link{
+  color: var(--accent-color);
+  font-weight: 500;
+}
+
+.auth-link:hover{
+  color: color-mix(in srgb, var(--accent-color), transparent 25%);
+}
+
+.auth-btn{
+  padding: 12px 18px;
+  border-radius: 8px;
+}
+
+.auth-divider{
+  position: relative;
+  text-align: center;
+}
+
+.auth-divider::before,
+.auth-divider::after{
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 35%;
+  height: 1px;
+  background: color-mix(in srgb, var(--default-color), transparent 80%);
+}
+
+.auth-divider::before{ left: 0; }
+.auth-divider::after{ right: 0; }
+
+.auth-divider span{
+  display: inline-block;
+  padding: 0 12px;
+  color: color-mix(in srgb, var(--default-color), transparent 45%);
+  font-size: 14px;
+}
+
+.auth-social-btn{
+  border: 1px solid color-mix(in srgb, var(--default-color), transparent 80%);
+  background: var(--surface-color);
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+.auth-social-btn:hover{
+  border-color: var(--accent-color);
+  color: var(--accent-color);
 }

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Register - JomDonate</title>
+
+  <link href="assets/img/favicon.png" rel="icon" />
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&family=Amatic+SC:wght@400;700&display=swap"
+    rel="stylesheet" />
+
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+
+  <link href="assets/css/main.css" rel="stylesheet" />
+</head>
+
+<body class="auth-page">
+
+  <header id="header" class="header fixed-top">
+    <div class="container d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center me-auto me-lg-0">
+        <h1>JomDonate<span>.</span></h1>
+      </a>
+
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="section light-background">
+      <div class="container" data-aos="fade-up">
+        <div class="row justify-content-center">
+          <div class="col-lg-6">
+
+            <div class="auth-card">
+              <div class="text-center mb-4">
+                <h2 class="auth-title">Create an account</h2>
+                <p class="auth-subtitle">Register to donate and get matched faster.</p>
+              </div>
+
+              <form id="registerForm" class="php-email-form" onsubmit="return false;">
+                <div class="row gy-3">
+
+                  <div class="col-12">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" class="form-control" id="regName" placeholder="Your name" required />
+                  </div>
+
+                  <div class="col-12">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" id="regEmail" placeholder="you@example.com" required />
+                  </div>
+
+                  <div class="col-12">
+                    <label class="form-label">Password</label>
+                    <div class="input-group">
+                      <input type="password" class="form-control" id="regPassword" placeholder="Create a password" required />
+                      <button class="btn btn-outline-secondary" type="button" id="toggleRegPw">
+                        <i class="bi bi-eye"></i>
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <div class="loading">Loading</div>
+                    <div class="error-message" id="regError"></div>
+                    <div class="sent-message" id="regSuccess">Account created successfully!</div>
+
+                    <button type="submit" class="btn btn-primary w-100 auth-btn" id="registerBtn">
+                      Register
+                    </button>
+
+                    <!-- Divider -->
+                    <div class="auth-divider my-4"><span>or continue with</span></div>
+
+                    <!-- Social -->
+                    <div class="row g-3">
+                      <div class="col-6">
+                        <button type="button" class="btn auth-social-btn w-100" id="regGoogleBtn">
+                          <i class="bi bi-google me-2"></i> Google
+                        </button>
+                      </div>
+                      <div class="col-6">
+                        <button type="button" class="btn auth-social-btn w-100" id="regGmailBtn">
+                          <i class="bi bi-envelope-fill me-2"></i> Gmail
+                        </button>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="col-12 text-center mt-3">
+                    <p class="mb-0">
+                      Already have an account?
+                      <a href="login.html" class="auth-link">Login</a>
+                    </p>
+                  </div>
+
+                </div>
+              </form>
+
+            </div><!-- auth-card -->
+
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+
+  <script>
+    AOS.init();
+
+    // show/hide password
+    document.getElementById("toggleRegPw").addEventListener("click", () => {
+      const pw = document.getElementById("regPassword");
+      pw.type = pw.type === "password" ? "text" : "password";
+    });
+
+    // register (placeholder)
+    document.getElementById("registerBtn").addEventListener("click", () => {
+      document.getElementById("regError").style.display = "none";
+      document.getElementById("regSuccess").style.display = "block";
+    });
+
+    // Social (placeholder)
+    document.getElementById("regGoogleBtn").addEventListener("click", () => {
+      alert("Google register/login (placeholder). Connect Firebase Auth later.");
+    });
+
+    document.getElementById("regGmailBtn").addEventListener("click", () => {
+      window.open("https://mail.google.com/", "_blank");
+    });
+  </script>
+
+</body>
+</html>
