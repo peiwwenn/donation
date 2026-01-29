@@ -22,26 +22,54 @@
   <link href="assets/css/main.css" rel="stylesheet" />
 
   <style>
-  body.auth-page{
-    background-image: url("assets/img/login.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    min-height: 100vh;
-  }
+    /* 1) Prevent page scroll */
+    html, body {
+      height: 100%;
+      overflow: hidden;
+    }
 
-  body.auth-page .main,
-  body.auth-page .section {
-    background: transparent !important;
-  }
+    /* 2) Background image */
+    body.auth-page{
+      background-image: url("assets/img/login.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      min-height: 100vh;
+    }
 
-  body.auth-page .section {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
+    /* 3) Remove template section padding that causes scroll */
+    body.auth-page .section{
+      padding: 0 !important;
+      background: transparent !important;
+    }
+
+    /* 4) Fit content into viewport minus header height */
+    body.auth-page .main{
+      background: transparent !important;
+      height: 100vh;
+      padding-top: 92px; /* header height (desktop). change if your header is different */
+    }
+
+    /* 5) Center the card, and ensure it doesn't overflow */
+    body.auth-page .section{
+      height: calc(100vh - 92px);
+      display: flex;
+      align-items: center;
+    }
+
+    .auth-card{
+      max-height: calc(100vh - 140px); /* safety space */
+      overflow: auto;                 /* only the card scrolls if screen is too small */
+    }
+
+    /* Mobile header is smaller in your template */
+    @media (max-width: 1199px){
+      body.auth-page .main{ padding-top: 56px; }
+      body.auth-page .section{ height: calc(100vh - 56px); }
+    }
   </style>
+
 </head>
 
 <body class="auth-page">

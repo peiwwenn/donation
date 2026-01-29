@@ -20,6 +20,41 @@
   <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
 
   <link href="assets/css/main.css" rel="stylesheet" />
+  <style>
+    /* No page scroll */
+    html, body { height: 100%; overflow: hidden; }
+
+    /* Remove template padding that causes scrolling */
+    body.auth-page .section{
+      padding: 0 !important;
+    }
+
+    /* Fit viewport minus fixed header */
+    body.auth-page .main{
+      height: 100vh;
+      padding-top: 92px; /* desktop header height */
+    }
+
+    body.auth-page .section{
+      height: calc(100vh - 92px);
+      display: flex;
+      align-items: center;
+    }
+
+    /* If small screen, allow only the card to scroll (not the whole page) */
+    .auth-card{
+      max-height: calc(100vh - 140px);
+      overflow: auto;
+    }
+
+    /* Mobile header height in your template */
+    @media (max-width: 1199px){
+      body.auth-page .main{ padding-top: 56px; }
+      body.auth-page .section{ height: calc(100vh - 56px); }
+      .auth-card{ max-height: calc(100vh - 110px); }
+    }
+  </style>
+
 </head>
 
 <body class="auth-page">
