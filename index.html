@@ -40,35 +40,62 @@
 
 <body class="index-page">
 
-  <header id="header" class="header d-flex align-items-center sticky-top">
-    <div class="container position-relative d-flex align-items-center justify-content-between">
+<header id="header" class="header d-flex align-items-center sticky-top">
+  <div class="container position-relative d-flex align-items-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1 class="sitename">JomDonate</h1>
-        <span>.</span>
+    <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+      <h1 class="sitename">JomDonate</h1>
+      <span>.</span>
+    </a>
+
+    <nav id="navmenu" class="navmenu">
+      <ul>
+        <li><a href="#hero" class="active">Home<br></a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#menu">Items</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#chefs">Founder</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
+      <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+    </nav>
+
+    <!-- ✅ Right corner -->
+    <div class="d-flex align-items-center gap-2">
+
+      <a class="btn-getstarted" href="#create-donation" style="margin-left:0;">Donate</a>
+
+      <!-- ✅ Default: Login/Register button -->
+      <a class="btn-getstarted" href="login.html" style="margin-left:0;" id="loginNavBtn">
+        Login/Register
       </a>
 
-      <nav id="navmenu" class="navmenu">
-        <ul>
-          <li><a href="#hero" class="active">Home<br></a></li>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#menu">Items</a></li>
-          <li><a href="#events">Events</a></li>
-          <li><a href="#chefs">Founder</a></li>
-          <li><a href="#gallery">Gallery</a></li>
-          <li><a href="#contact">Contact Us</a></li>
+      <!-- ✅ User avatar dropdown (hidden by default, only UI) -->
+      <div class="dropdown" id="userMenu" style="display:block;">
+        <button class="btn p-0 border-0 bg-transparent dropdown-toggle"
+          data-bs-toggle="dropdown" aria-expanded="false" style="box-shadow:none;">
+          <img src="assets/img/user.png" alt="User"
+            style="width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,.5);" />
+        </button>
+
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li class="px-3 py-2">
+            <div style="font-weight:600;">User Name</div>
+            <div style="font-size:12px;opacity:.75;">user@email.com</div>
+          </li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="#">My Profile</a></li>
+          <li><a class="dropdown-item" href="#">My Donations</a></li>
+          <li><a class="dropdown-item text-danger" href="logout.html">Logout</a></li>
         </ul>
-        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-      </nav>
-      <div class="d-flex align-items-center gap-2">
-        <a class="btn-getstarted" href="index.html#create-donation" style="margin-left:0;">Donate</a>
-        <a class="btn-getstarted" href="login.html" style="margin-left:0;">Login/Register</a>
       </div>
 
     </div>
-  </header>
+
+  </div>
+</header>
+
 
   <main class="main">
 

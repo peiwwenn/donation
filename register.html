@@ -20,6 +20,60 @@
   <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
 
   <link href="assets/css/main.css" rel="stylesheet" />
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-analytics.js"></script>
+
+  <script type="module">
+    // Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyA065z53-vCHVh4Yx-fRm5DtacxxKLjBQo",
+      authDomain: "smart-food-rescue-a57a7.firebaseapp.com",
+      projectId: "smart-food-rescue-a57a7",
+      storageBucket: "smart-food-rescue-a57a7.firebasestorage.app",
+      messagingSenderId: "754015285437",
+      appId: "1:754015285437:web:d289f321384fc181cfc7d4",
+      measurementId: "G-VJTB228XY8"
+    };
+
+    // Initialize Firebase
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+    import { getAuth, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // Google Sign-In functionality
+    document.getElementById("regGoogleBtn").addEventListener("click", () => {
+      const provider = new GoogleAuthProvider();
+      signInWithPopup(auth, provider)
+        .then((result) => {
+          const user = result.user;
+          alert("User signed in with Google: " + user.displayName);
+        })
+        .catch((error) => {
+          console.error("Error signing in with Google:", error);
+          alert("Error: " + error.message);
+        });
+    });
+
+    // Gmail Sign-In functionality (same as Google for Gmail users)
+    document.getElementById("regGmailBtn").addEventListener("click", () => {
+      const provider = new GoogleAuthProvider();
+      signInWithPopup(auth, provider)
+        .then((result) => {
+          const user = result.user;
+          alert("User signed in with Gmail: " + user.displayName);
+        })
+        .catch((error) => {
+          console.error("Error signing in with Gmail:", error);
+          alert("Error: " + error.message);
+        });
+    });
+  </script>
+
   <style>
     body.auth-page .section,
     body.auth-page .container{
@@ -103,19 +157,21 @@
                     <!-- Divider -->
                     <div class="auth-divider my-4"><span>or continue with</span></div>
 
-                    <!-- Social -->
+                    <!-- Social Sign-In -->
                     <div class="row g-3">
+                      <!-- Google Sign-In Button -->
                       <div class="col-6">
                         <button type="button" class="btn auth-social-btn w-100" id="regGoogleBtn">
                           <i class="bi bi-google me-2"></i> Google
                         </button>
                       </div>
-                      <div class="col-6">
-                        <button type="button" class="btn auth-social-btn w-100" id="regGmailBtn">
-                          <i class="bi bi-envelope-fill me-2"></i> Gmail
+                    <div class="col-6">
+                        <button type="button" class="btn auth-social-btn w-100" id="regPhoneBtn">
+                          <i class="bi bi-telephone-fill me-2"></i> Phone
                         </button>
                       </div>
                     </div>
+
 
                   </div>
 
@@ -143,26 +199,38 @@
   <script>
     AOS.init();
 
-    // show/hide password
+    // Show/hide password
     document.getElementById("toggleRegPw").addEventListener("click", () => {
       const pw = document.getElementById("regPassword");
       pw.type = pw.type === "password" ? "text" : "password";
     });
-
-    // register (placeholder)
-    document.getElementById("registerBtn").addEventListener("click", () => {
-      document.getElementById("regError").style.display = "none";
-      document.getElementById("regSuccess").style.display = "block";
-    });
-
-    // Social (placeholder)
+    
+    // Google Sign-In functionality
     document.getElementById("regGoogleBtn").addEventListener("click", () => {
-      alert("Google register/login (placeholder). Connect Firebase Auth later.");
+      const provider = new firebase.auth.GoogleAuthProvider();
+      auth.signInWithPopup(provider).then((result) => {
+        const user = result.user;
+        alert("User signed in with Google: " + user.displayName);
+        // Optionally, redirect the user or update the UI
+      }).catch((error) => {
+        console.error("Error signing in with Google:", error);
+        alert("Error signing in: " + error.message);
+      });
     });
 
+    // Gmail Sign-In functionality (Same as Google, because Gmail is a Google account)
     document.getElementById("regGmailBtn").addEventListener("click", () => {
-      window.open("https://mail.google.com/", "_blank");
+      const provider = new firebase.auth.GoogleAuthProvider();
+      auth.signInWithPopup(provider).then((result) => {
+        const user = result.user;
+        alert("User signed in with Gmail: " + user.displayName);
+        // Optionally, redirect the user or update the UI
+      }).catch((error) => {
+        console.error("Error signing in with Gmail:", error);
+        alert("Error signing in: " + error.message);
+      });
     });
+
   </script>
 
 </body>
