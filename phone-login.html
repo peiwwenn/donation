@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Phone Login - JomDonate</title>
+
+  <link href="assets/img/favicon.png" rel="icon" />
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&family=Amatic+SC:wght@400;700&display=swap"
+    rel="stylesheet" />
+
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
+
+  <link href="assets/css/main.css" rel="stylesheet" />
+
+  <style>
+    /* Prevent page scroll */
+    html, body { height: 100%; overflow: hidden; }
+
+    /* Background image */
+    body.auth-page{
+      background-image: url("assets/img/login.png");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      min-height: 100vh;
+    }
+
+    /* Remove default padding to avoid scroll */
+    body.auth-page .section{
+      padding: 0 !important;
+      background: transparent !important;
+    }
+
+    /* Fit content into viewport minus header height */
+    body.auth-page .main{
+      background: transparent !important;
+      height: 100vh;
+      padding-top: 92px; /* desktop header height */
+    }
+
+    /* Center card */
+    body.auth-page .section{
+      height: calc(100vh - 92px);
+      display: flex;
+      align-items: center;
+    }
+
+    /* Card safety on small screens */
+    .auth-card{
+      max-height: calc(100vh - 140px);
+      overflow: auto; /* only card scrolls if very small */
+    }
+
+    @media (max-width: 1199px){
+      body.auth-page .main{ padding-top: 56px; }
+      body.auth-page .section{ height: calc(100vh - 56px); }
+    }
+
+    body.auth-page #header{
+      background: transparent !important;
+      box-shadow: none !important;
+    }
+
+    .otp-box{
+      letter-spacing: 4px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 18px;
+    }
+
+    .hint-text{
+      opacity: .75;
+      font-size: 13px;
+    }
+  </style>
+</head>
+
+<body class="auth-page">
+
+  <header id="header" class="header fixed-top">
+    <div class="container d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center me-auto me-lg-0">
+        <h1>JomDonate<span>.</span></h1>
+      </a>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="section">
+      <div class="container" data-aos="fade-up">
+        <div class="row justify-content-center">
+          <div class="col-lg-6">
+
+            <div class="auth-card">
+              <div class="text-center mb-4">
+                <h2 class="auth-title">Login with Phone</h2>
+                <p class="auth-subtitle">Enter your phone number to receive a verification code.</p>
+              </div>
+
+              <form id="phoneLoginForm" class="php-email-form" onsubmit="return false;">
+                <div class="row gy-3">
+
+                  <!-- Phone -->
+                  <div class="col-12">
+                    <label class="form-label">Phone Number</label>
+                    <div class="input-group">
+                      <span class="input-group-text">+60</span>
+                      <input type="tel" class="form-control" id="loginPhone"
+                        placeholder="12xxxxxxxx" required />
+                    </div>
+                    <div class="hint-text mt-1">Example: +60 12 345 6789</div>
+                  </div>
+
+                  <!-- Step 1: Send OTP -->
+                  <div class="col-12" id="stepSend">
+                    <div class="loading" id="sendLoading" style="display:none;">Loading</div>
+                    <div class="error-message" id="sendError" style="display:none;"></div>
+                    <div class="sent-message" id="sendSuccess" style="display:none;">
+                      Verification code sent! Please check your SMS.
+                    </div>
+
+                    <button type="button" class="btn btn-primary w-100 auth-btn" id="sendOtpBtn">
+                      Send Verification Code
+                    </button>
+                  </div>
+
+                  <!-- Step 2: Verify OTP -->
+                  <div class="col-12" id="stepVerify" style="display:none;">
+                    <label class="form-label">Verification Code</label>
+                    <input type="text" class="form-control otp-box" id="otpCode"
+                      placeholder="------" maxlength="6" />
+
+                    <div class="d-flex gap-2 mt-3">
+                      <button type="button" class="btn btn-primary w-100 auth-btn" id="verifyOtpBtn">
+                        Verify & Login
+                      </button>
+                      <button type="button" class="btn btn-outline-secondary w-100 auth-btn" id="resendOtpBtn">
+                        Resend
+                      </button>
+                    </div>
+
+                    <div class="error-message mt-3" id="verifyError" style="display:none;"></div>
+                    <div class="sent-message mt-3" id="verifySuccess" style="display:none;">
+                      Login successful! Redirecting to home...
+                    </div>
+                  </div>
+
+                  <!-- Divider -->
+                  <div class="col-12">
+                    <div class="auth-divider my-3"><span>or</span></div>
+                  </div>
+
+                  <!-- Google login (optional) -->
+                  <div class="col-12">
+                    <button type="button" class="btn auth-social-btn w-100" id="googleLoginBtn">
+                      <i class="bi bi-google"></i> Continue with Google
+                    </button>
+                  </div>
+
+                </div>
+              </form>
+
+            </div><!-- auth-card -->
+
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+
+  <script>
+    AOS.init();
+
+    const sendLoading = document.getElementById("sendLoading");
+    const sendError = document.getElementById("sendError");
+    const sendSuccess = document.getElementById("sendSuccess");
+
+    const stepVerify = document.getElementById("stepVerify");
+
+    const verifyError = document.getElementById("verifyError");
+    const verifySuccess = document.getElementById("verifySuccess");
+
+    function resetSendMsgs(){
+      sendLoading.style.display = "none";
+      sendError.style.display = "none";
+      sendSuccess.style.display = "none";
+      sendError.textContent = "";
+    }
+    function resetVerifyMsgs(){
+      verifyError.style.display = "none";
+      verifySuccess.style.display = "none";
+      verifyError.textContent = "";
+    }
+
+    // Frontend demo: Send OTP
+    document.getElementById("sendOtpBtn").addEventListener("click", () => {
+      resetSendMsgs();
+      resetVerifyMsgs();
+
+      const phone = document.getElementById("loginPhone").value.trim();
+      if(!phone){
+        sendError.textContent = "Please enter your phone number.";
+        sendError.style.display = "block";
+        return;
+      }
+
+      sendLoading.style.display = "block";
+
+      // Simulate SMS request
+      setTimeout(() => {
+        sendLoading.style.display = "none";
+        sendSuccess.style.display = "block";
+        stepVerify.style.display = "block";
+      }, 700);
+    });
+
+    // Frontend demo: Verify OTP
+    document.getElementById("verifyOtpBtn").addEventListener("click", () => {
+      resetVerifyMsgs();
+
+      const code = document.getElementById("otpCode").value.trim();
+      if(code.length !== 6){
+        verifyError.textContent = "Please enter the 6-digit verification code.";
+        verifyError.style.display = "block";
+        return;
+      }
+
+      verifySuccess.style.display = "block";
+
+      // Simulate redirect
+      setTimeout(() => {
+        window.location.href = "index.html";
+      }, 900);
+    });
+
+    // Resend OTP (frontend demo)
+    document.getElementById("resendOtpBtn").addEventListener("click", () => {
+      resetSendMsgs();
+      sendSuccess.textContent = "Verification code resent! Please check your SMS.";
+      sendSuccess.style.display = "block";
+    });
+
+    // Google (placeholder)
+    document.getElementById("googleLoginBtn").addEventListener("click", () => {
+      alert("Google login (placeholder). Connect Firebase Auth later.");
+    });
+  </script>
+
+</body>
+</html>

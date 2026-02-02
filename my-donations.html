@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>My Donations - JomDonate</title>
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <style>
+    .page-hero {
+      padding: 90px 0 22px 0;
+      background: #fff;
+    }
+
+    .page-title {
+      font-weight: 900;
+      letter-spacing: -0.2px;
+    }
+
+    .page-title span {
+      color: #ce1212;
+    }
+
+    .section-pad {
+      padding: 18px 0 60px 0;
+      background: #f8f9fa;
+    }
+
+    .card-soft {
+      border: 1px solid rgba(0, 0, 0, .08);
+      border-radius: 18px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, .06);
+      background: #fff;
+    }
+
+    .badge-red {
+      background: rgba(206, 18, 18, .10);
+      color: #ce1212;
+      border: 1px solid rgba(206, 18, 18, .25);
+      font-weight: 700;
+    }
+
+    .btn-red {
+      background: #ce1212;
+      border: 1px solid #ce1212;
+      color: #fff;
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-weight: 800;
+    }
+
+    .btn-red:hover {
+      background: #b60f0f;
+      border-color: #b60f0f;
+      color: #fff;
+    }
+
+    .btn-outline-red {
+      border: 1px solid rgba(206, 18, 18, .55);
+      color: #ce1212;
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-weight: 800;
+      background: #fff;
+    }
+
+    .btn-outline-red:hover {
+      background: rgba(206, 18, 18, .08);
+      color: #ce1212;
+    }
+
+    .pill-tab {
+      border-radius: 999px !important;
+      padding: 10px 16px !important;
+      font-weight: 800;
+      border: 1px solid rgba(0, 0, 0, .10) !important;
+      background: #fff !important;
+      color: rgba(0, 0, 0, .70) !important;
+    }
+
+    .pill-tab.active {
+      background: rgba(206, 18, 18, .10) !important;
+      border-color: rgba(206, 18, 18, .35) !important;
+      color: #ce1212 !important;
+    }
+
+    .meta {
+      color: rgba(0, 0, 0, .60);
+      font-size: 13px;
+      margin: 0;
+    }
+
+    .donation-title {
+      font-weight: 900;
+      margin-bottom: 4px;
+      font-size: 18px;
+    }
+
+    .icon-circle {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: rgba(206, 18, 18, .10);
+      border: 1px solid rgba(206, 18, 18, .22);
+      color: #ce1212;
+      flex-shrink: 0;
+    }
+
+    .search-input {
+      border-radius: 12px;
+      padding: 12px 12px;
+      border: 1px solid rgba(0, 0, 0, .12);
+    }
+
+    .search-input:focus {
+      border-color: rgba(206, 18, 18, .45);
+      box-shadow: 0 0 0 .2rem rgba(206, 18, 18, .12);
+    }
+
+    @media (max-width: 991px) {
+      .page-hero {
+        padding-top: 78px;
+      }
+    }
+  </style>
+</head>
+
+<body class="index-page">
+
+  <!-- Header -->
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container position-relative d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+        <h1 class="sitename">JomDonate</h1>
+        <span>.</span>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html#hero">Home</a></li>
+          <li><a href="index.html#about">About Us</a></li>
+          <li><a href="index.html#menu">Items</a></li>
+          <li><a href="index.html#events">Events</a></li>
+          <li><a href="index.html#gallery">Gallery</a></li>
+          <li><a href="index.html#contact">Contact Us</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <div class="d-flex align-items-center gap-2">
+        <a class="btn-getstarted" href="index.html#create-donation" style="margin-left:0;">Donate</a>
+
+        <!-- Avatar dropdown (frontend only) -->
+        <div class="dropdown">
+          <button class="btn p-0 border-0 bg-transparent dropdown-toggle"
+            data-bs-toggle="dropdown" aria-expanded="false" style="box-shadow:none;">
+            <img src="assets/img/user.png" alt="User"
+              style="width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid rgba(0,0,0,.12);" />
+          </button>
+
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="profile.html"><i class="bi bi-person me-2"></i>My Profile</a></li>
+            <li><a class="dropdown-item" href="my-donations.html"><i class="bi bi-box2-heart me-2"></i>My Donations</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item text-danger" href="logout.html"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+      <div class="container" data-aos="fade-up">
+        <div class="row align-items-center gy-3">
+          <div class="col-lg-7">
+            <h2 class="page-title mb-1">My <span>Donations</span></h2>
+            <p class="mb-0" style="color: rgba(0,0,0,.65);">
+              Track your donation status and view matching results.
+            </p>
+          </div>
+          <div class="col-lg-5 d-flex justify-content-lg-end gap-2">
+            <a href="index.html#create-donation" class="btn btn-red">
+              <i class="bi bi-plus-circle me-2"></i>Create Donation
+            </a>
+            <button class="btn btn-outline-red" type="button" id="refreshBtn">
+              <i class="bi bi-arrow-clockwise me-2"></i>Refresh (UI)
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Content -->
+    <section class="section-pad">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <!-- Search + Tabs -->
+        <div class="card-soft p-4 mb-4">
+          <div class="row g-3 align-items-center">
+            <div class="col-lg-5">
+              <input id="searchInput" type="text" class="form-control search-input"
+                placeholder="Search by item, category, or status...">
+            </div>
+
+            <div class="col-lg-7">
+              <div class="d-flex flex-wrap gap-2 justify-content-lg-end">
+                <button class="pill-tab active" data-filter="all" type="button">All</button>
+                <button class="pill-tab" data-filter="pending" type="button">Pending</button>
+                <button class="pill-tab" data-filter="matched" type="button">Matched</button>
+                <button class="pill-tab" data-filter="completed" type="button">Completed</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Donation List -->
+        <div class="row g-4" id="donationList">
+
+          <!-- Card 1 -->
+          <div class="col-lg-6 donation-card" data-status="matched" data-keywords="packed lunches food rescue matched">
+            <div class="card-soft p-4">
+              <div class="d-flex align-items-start gap-3">
+                <div class="icon-circle">
+                  <i class="bi bi-basket2-fill"></i>
+                </div>
+
+                <div class="flex-grow-1">
+                  <div class="d-flex align-items-center justify-content-between gap-2 flex-wrap">
+                    <div>
+                      <div class="donation-title">Packed Lunches (20)</div>
+                      <p class="meta mb-1">
+                        <i class="bi bi-tags me-1"></i> Food Rescue
+                        <span class="mx-2">•</span>
+                        <i class="bi bi-calendar3 me-1"></i> 2026-02-01
+                      </p>
+                      <p class="meta mb-0">
+                        <i class="bi bi-geo-alt me-1"></i> Bandar Sunway, Selangor
+                      </p>
+                    </div>
+
+                    <span class="badge badge-red rounded-pill px-3 py-2">
+                      Matched
+                    </span>
+                  </div>
+
+                  <hr class="my-3">
+
+                  <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                    <div class="meta">
+                      <i class="bi bi-building me-1"></i> Matched NGO: <strong>Sunway Community Kitchen</strong>
+                    </div>
+                    <button class="btn btn-outline-red btn-sm" data-bs-toggle="modal" data-bs-target="#detailModal"
+                      onclick="openDetail('Packed Lunches (20)','Food Rescue','Matched','Bandar Sunway, Selangor','Pickup today 6pm – halal','Sunway Community Kitchen')">
+                      View Details
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="col-lg-6 donation-card" data-status="pending" data-keywords="kids clothes essentials pending">
+            <div class="card-soft p-4">
+              <div class="d-flex align-items-start gap-3">
+                <div class="icon-circle">
+                  <i class="bi bi-bag-heart-fill"></i>
+                </div>
+
+                <div class="flex-grow-1">
+                  <div class="d-flex align-items-center justify-content-between gap-2 flex-wrap">
+                    <div>
+                      <div class="donation-title">Kids Clothes (2 bags)</div>
+                      <p class="meta mb-1">
+                        <i class="bi bi-tags me-1"></i> Clothes & Essentials
+                        <span class="mx-2">•</span>
+                        <i class="bi bi-calendar3 me-1"></i> 2026-01-28
+                      </p>
+                      <p class="meta mb-0">
+                        <i class="bi bi-geo-alt me-1"></i> Subang Jaya, Selangor
+                      </p>
+                    </div>
+
+                    <span class="badge bg-light text-dark rounded-pill px-3 py-2"
+                      style="border:1px solid rgba(0,0,0,.12); font-weight:800;">
+                      Pending
+                    </span>
+                  </div>
+
+                  <hr class="my-3">
+
+                  <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                    <div class="meta">
+                      <i class="bi bi-hourglass-split me-1"></i> Waiting for NGO response...
+                    </div>
+                    <button class="btn btn-outline-red btn-sm" data-bs-toggle="modal" data-bs-target="#detailModal"
+                      onclick="openDetail('Kids Clothes (2 bags)','Clothes & Essentials','Pending','Subang Jaya, Selangor','Kids size M, clean & packed','Not assigned yet')">
+                      View Details
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="col-lg-6 donation-card" data-status="completed" data-keywords="pet food pet supplies completed">
+            <div class="card-soft p-4">
+              <div class="d-flex align-items-start gap-3">
+                <div class="icon-circle">
+                  <i class="bi bi-heart-pulse-fill"></i>
+                </div>
+
+                <div class="flex-grow-1">
+                  <div class="d-flex align-items-center justify-content-between gap-2 flex-wrap">
+                    <div>
+                      <div class="donation-title">Pet Food (unopened)</div>
+                      <p class="meta mb-1">
+                        <i class="bi bi-tags me-1"></i> Pet Supplies
+                        <span class="mx-2">•</span>
+                        <i class="bi bi-calendar3 me-1"></i> 2026-01-18
+                      </p>
+                      <p class="meta mb-0">
+                        <i class="bi bi-geo-alt me-1"></i> PJ, Selangor
+                      </p>
+                    </div>
+
+                    <span class="badge bg-success-subtle text-success rounded-pill px-3 py-2"
+                      style="border:1px solid rgba(25,135,84,.22); font-weight:900;">
+                      Completed
+                    </span>
+                  </div>
+
+                  <hr class="my-3">
+
+                  <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                    <div class="meta">
+                      <i class="bi bi-check2-circle me-1"></i> Delivered successfully
+                    </div>
+                    <button class="btn btn-outline-red btn-sm" data-bs-toggle="modal" data-bs-target="#detailModal"
+                      onclick="openDetail('Pet Food (unopened)','Pet Supplies','Completed','PJ, Selangor','Unopened, expiry 2026-06','Paws Shelter PJ')">
+                      View Details
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="col-lg-6 donation-card" data-status="matched" data-keywords="laptop electronics matched">
+            <div class="card-soft p-4">
+              <div class="d-flex align-items-start gap-3">
+                <div class="icon-circle">
+                  <i class="bi bi-laptop-fill"></i>
+                </div>
+
+                <div class="flex-grow-1">
+                  <div class="d-flex align-items-center justify-content-between gap-2 flex-wrap">
+                    <div>
+                      <div class="donation-title">Laptop (working)</div>
+                      <p class="meta mb-1">
+                        <i class="bi bi-tags me-1"></i> Electronics
+                        <span class="mx-2">•</span>
+                        <i class="bi bi-calendar3 me-1"></i> 2026-01-10
+                      </p>
+                      <p class="meta mb-0">
+                        <i class="bi bi-geo-alt me-1"></i> Bandar Sunway, Selangor
+                      </p>
+                    </div>
+
+                    <span class="badge badge-red rounded-pill px-3 py-2">
+                      Matched
+                    </span>
+                  </div>
+
+                  <hr class="my-3">
+
+                  <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                    <div class="meta">
+                      <i class="bi bi-building me-1"></i> Matched NGO: <strong>Student Aid Program</strong>
+                    </div>
+                    <button class="btn btn-outline-red btn-sm" data-bs-toggle="modal" data-bs-target="#detailModal"
+                      onclick="openDetail('Laptop (working)','Electronics','Matched','Bandar Sunway, Selangor','Includes charger, clean condition','Student Aid Program')">
+                      View Details
+                    </button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div><!-- End list -->
+
+        <!-- Empty result -->
+        <div id="emptyState" class="text-center mt-5" style="display:none;">
+          <div class="card-soft p-5">
+            <i class="bi bi-inbox" style="font-size:44px; color:#ce1212;"></i>
+            <h4 class="mt-3" style="font-weight:900;">No donations found</h4>
+            <p class="mb-0" style="color: rgba(0,0,0,.65);">Try another keyword or filter.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Details Modal -->
+  <div class="modal fade" id="detailModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content" style="border-radius:18px;">
+        <div class="modal-header">
+          <h5 class="modal-title" style="font-weight:900;">Donation Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-2"><span class="meta">Item</span><div style="font-weight:900;" id="dItem">-</div></div>
+          <div class="mb-2"><span class="meta">Category</span><div style="font-weight:800;" id="dCat">-</div></div>
+          <div class="mb-2"><span class="meta">Status</span><div style="font-weight:800;" id="dStatus">-</div></div>
+          <div class="mb-2"><span class="meta">Location</span><div style="font-weight:700;" id="dLoc">-</div></div>
+          <div class="mb-2"><span class="meta">Notes</span><div style="font-weight:700;" id="dNotes">-</div></div>
+          <hr>
+          <div><span class="meta">Matched NGO</span><div style="font-weight:900; color:#ce1212;" id="dNgo">-</div></div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline-red" type="button" data-bs-dismiss="modal">Close</button>
+          <button class="btn btn-red" type="button">Contact NGO (UI)</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+
+  <script>
+    AOS.init();
+
+    // Modal content setter
+    function openDetail(item, cat, status, loc, notes, ngo) {
+      document.getElementById("dItem").textContent = item;
+      document.getElementById("dCat").textContent = cat;
+      document.getElementById("dStatus").textContent = status;
+      document.getElementById("dLoc").textContent = loc;
+      document.getElementById("dNotes").textContent = notes;
+      document.getElementById("dNgo").textContent = ngo;
+    }
+
+    // Filter tabs
+    const tabs = document.querySelectorAll(".pill-tab");
+    const cards = document.querySelectorAll(".donation-card");
+    const emptyState = document.getElementById("emptyState");
+    const searchInput = document.getElementById("searchInput");
+
+    let activeFilter = "all";
+
+    function applyFilter() {
+      const q = (searchInput.value || "").toLowerCase().trim();
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const status = card.getAttribute("data-status");
+        const keywords = (card.getAttribute("data-keywords") || "").toLowerCase();
+
+        const matchFilter = (activeFilter === "all") || (status === activeFilter);
+        const matchSearch = (!q) || keywords.includes(q);
+
+        const show = matchFilter && matchSearch;
+        card.style.display = show ? "" : "none";
+        if (show) visibleCount++;
+      });
+
+      emptyState.style.display = visibleCount === 0 ? "block" : "none";
+    }
+
+    tabs.forEach(t => {
+      t.addEventListener("click", () => {
+        tabs.forEach(x => x.classList.remove("active"));
+        t.classList.add("active");
+        activeFilter = t.getAttribute("data-filter");
+        applyFilter();
+      });
+    });
+
+    searchInput.addEventListener("input", applyFilter);
+
+    // Refresh (UI only)
+    document.getElementById("refreshBtn").addEventListener("click", () => {
+      searchInput.value = "";
+      activeFilter = "all";
+      tabs.forEach(x => x.classList.remove("active"));
+      tabs[0].classList.add("active");
+      applyFilter();
+    });
+
+    // Run once
+    applyFilter();
+  </script>
+
+</body>
+</html>

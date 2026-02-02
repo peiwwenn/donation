@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>My Profile - JomDonate</title>
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+
+  <!-- Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <style>
+    /* Keep theme consistent (white + red) */
+    .profile-hero {
+      padding: 90px 0 24px 0;
+      background: #fff;
+    }
+
+    .profile-title {
+      font-weight: 800;
+      letter-spacing: -0.2px;
+    }
+
+    .profile-title span {
+      color: #ce1212; /* same red as your hero title */
+    }
+
+    .card-soft {
+      border: 1px solid rgba(0,0,0,.08);
+      border-radius: 18px;
+      box-shadow: 0 12px 30px rgba(0,0,0,.06);
+      background: #fff;
+    }
+
+    .avatar-wrap {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid rgba(206,18,18,.25);
+      box-shadow: 0 10px 20px rgba(0,0,0,.08);
+      background: #fff;
+    }
+
+    .avatar-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .badge-red {
+      background: rgba(206,18,18,.10);
+      color: #ce1212;
+      border: 1px solid rgba(206,18,18,.25);
+      font-weight: 600;
+    }
+
+    .label-muted {
+      font-size: 12px;
+      color: rgba(0,0,0,.55);
+      margin-bottom: 6px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+
+    .input-soft {
+      border-radius: 12px;
+      padding: 12px 12px;
+      border: 1px solid rgba(0,0,0,.12);
+    }
+
+    .input-soft:focus {
+      border-color: rgba(206,18,18,.45);
+      box-shadow: 0 0 0 .2rem rgba(206,18,18,.12);
+    }
+
+    .btn-red {
+      background: #ce1212;
+      border: 1px solid #ce1212;
+      color: #fff;
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-weight: 700;
+    }
+
+    .btn-red:hover {
+      background: #b60f0f;
+      border-color: #b60f0f;
+      color: #fff;
+    }
+
+    .btn-outline-red {
+      border: 1px solid rgba(206,18,18,.55);
+      color: #ce1212;
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-weight: 700;
+      background: #fff;
+    }
+
+    .btn-outline-red:hover {
+      background: rgba(206,18,18,.08);
+      color: #ce1212;
+    }
+
+    .stat-box {
+      border-radius: 14px;
+      border: 1px solid rgba(0,0,0,.08);
+      background: #fff;
+      padding: 14px;
+    }
+
+    .stat-num {
+      font-size: 22px;
+      font-weight: 800;
+      color: #ce1212;
+      line-height: 1.1;
+    }
+
+    .stat-label {
+      font-size: 13px;
+      color: rgba(0,0,0,.6);
+      margin: 0;
+    }
+
+    /* Make page look like your template sections */
+    .section-pad {
+      padding: 18px 0 60px 0;
+      background: #f8f9fa;
+    }
+
+    /* For small screens spacing */
+    @media (max-width: 991px) {
+      .profile-hero {
+        padding-top: 78px;
+      }
+    }
+  </style>
+</head>
+
+<body class="index-page">
+
+  <!-- Header (same style as index) -->
+  <header id="header" class="header d-flex align-items-center sticky-top">
+    <div class="container position-relative d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+        <h1 class="sitename">JomDonate</h1>
+        <span>.</span>
+      </a>
+
+      <nav id="navmenu" class="navmenu">
+        <ul>
+          <li><a href="index.html#hero">Home</a></li>
+          <li><a href="index.html#about">About Us</a></li>
+          <li><a href="index.html#menu">Items</a></li>
+          <li><a href="index.html#events">Events</a></li>
+          <li><a href="index.html#gallery">Gallery</a></li>
+          <li><a href="index.html#contact">Contact Us</a></li>
+        </ul>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+      </nav>
+
+      <div class="d-flex align-items-center gap-2">
+        <a class="btn-getstarted" href="index.html#create-donation" style="margin-left:0;">Donate</a>
+
+        <!-- Avatar (frontend only) -->
+        <div class="dropdown">
+          <button class="btn p-0 border-0 bg-transparent dropdown-toggle"
+            data-bs-toggle="dropdown" aria-expanded="false" style="box-shadow:none;">
+            <img src="assets/img/user.png" alt="User"
+              style="width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid rgba(0,0,0,.12);" />
+          </button>
+
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" href="profile.html"><i class="bi bi-person me-2"></i>My Profile</a></li>
+            <li><a class="dropdown-item" href="#"><i class="bi bi-box2-heart me-2"></i>My Donations</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item text-danger" href="logout.html"><i class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="main">
+
+    <!-- Page Header -->
+    <section class="profile-hero">
+      <div class="container" data-aos="fade-up">
+        <div class="row align-items-center gy-3">
+          <div class="col-lg-7">
+            <h2 class="profile-title mb-1">My <span>Profile</span></h2>
+            <p class="mb-0" style="color: rgba(0,0,0,.65);">
+              Manage your personal details and donation preferences.
+            </p>
+          </div>
+          <div class="col-lg-5 d-flex justify-content-lg-end">
+            <span class="badge badge-red px-3 py-2 rounded-pill">
+              <i class="bi bi-shield-check me-1"></i> Verified Account (UI)
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Content -->
+    <section class="section-pad">
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row g-4">
+
+          <!-- Left: Profile Summary -->
+          <div class="col-lg-4">
+            <div class="card-soft p-4">
+              <div class="d-flex align-items-center gap-3">
+                <div class="avatar-wrap">
+                  <img src="assets/img/user.png" alt="Avatar">
+                </div>
+                <div class="flex-grow-1">
+                  <h5 class="mb-1" style="font-weight:800;">User Name</h5>
+                  <div style="color: rgba(0,0,0,.65); font-size: 14px;">
+                    user@email.com
+                  </div>
+                </div>
+              </div>
+
+              <hr class="my-4">
+
+              <div class="row g-3">
+                <div class="col-12">
+                  <div class="label-muted">Phone</div>
+                  <div style="font-weight:700;"><i class="bi bi-telephone me-2" style="color:#ce1212;"></i>+60 12-345 6789</div>
+                </div>
+                <div class="col-12">
+                  <div class="label-muted">Location</div>
+                  <div style="font-weight:700;"><i class="bi bi-geo-alt me-2" style="color:#ce1212;"></i>Bandar Sunway, Selangor</div>
+                </div>
+                <div class="col-12">
+                  <div class="label-muted">Preferred Receiver</div>
+                  <div style="font-weight:700;"><i class="bi bi-heart-fill me-2" style="color:#ce1212;"></i>Any NGO Nearby</div>
+                </div>
+              </div>
+
+              <hr class="my-4">
+
+              <!-- Quick stats (UI only) -->
+              <div class="row g-3">
+                <div class="col-6">
+                  <div class="stat-box text-center">
+                    <div class="stat-num">12</div>
+                    <p class="stat-label">Donations</p>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="stat-box text-center">
+                    <div class="stat-num">8</div>
+                    <p class="stat-label">Matched</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="d-grid mt-4">
+                <button class="btn btn-outline-red" type="button">
+                  <i class="bi bi-camera me-2"></i>Change Photo (UI)
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Edit Form + Preferences -->
+          <div class="col-lg-8">
+            <div class="card-soft p-4 p-md-5">
+              <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+                <h4 class="mb-0" style="font-weight:900;">Edit Details</h4>
+                <small style="color: rgba(0,0,0,.55);">
+                  (Frontend only – connect Firebase later)
+                </small>
+              </div>
+
+              <form onsubmit="return false;">
+                <div class="row g-3">
+
+                  <div class="col-md-6">
+                    <div class="label-muted">Full Name</div>
+                    <input class="form-control input-soft" type="text" value="User Name" placeholder="Enter your name">
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="label-muted">Email</div>
+                    <input class="form-control input-soft" type="email" value="user@email.com" placeholder="Enter your email">
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="label-muted">Phone Number</div>
+                    <input class="form-control input-soft" type="text" value="+60 12-345 6789" placeholder="Enter phone number">
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="label-muted">Location</div>
+                    <input class="form-control input-soft" type="text" value="Bandar Sunway, Selangor" placeholder="Enter your location">
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="label-muted">Preferred Receiver</div>
+                    <select class="form-select input-soft">
+                      <option selected>Any NGO Nearby</option>
+                      <option>Orphanage</option>
+                      <option>Old Folks Home</option>
+                      <option>Dog/Cat Shelter</option>
+                    </select>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="label-muted">Short Bio (optional)</div>
+                    <textarea class="form-control input-soft" rows="4"
+                      placeholder="Example: I donate surplus food from my café every weekend.">I want to help reduce waste and support local shelters.</textarea>
+                  </div>
+
+                </div>
+
+                <div class="d-flex gap-2 flex-wrap mt-4">
+                  <button class="btn btn-red" type="button" id="saveBtn">
+                    <i class="bi bi-check2-circle me-2"></i>Save Changes
+                  </button>
+                  <button class="btn btn-outline-red" type="button">
+                    <i class="bi bi-key me-2"></i>Change Password (UI)
+                  </button>
+                </div>
+
+                <!-- UI message -->
+                <div id="saveMsg" class="mt-3" style="display:none;">
+                  <div class="alert alert-success mb-0" role="alert" style="border-radius:14px;">
+                    <i class="bi bi-check-circle me-2"></i>Saved! (UI only)
+                  </div>
+                </div>
+              </form>
+
+              <hr class="my-5">
+
+              <!-- Donations (UI only) -->
+              <h4 class="mb-3" style="font-weight:900;">Recent Donations (UI)</h4>
+
+              <div class="table-responsive">
+                <table class="table align-middle">
+                  <thead>
+                    <tr style="color: rgba(0,0,0,.65);">
+                      <th>Item</th>
+                      <th>Category</th>
+                      <th>Status</th>
+                      <th class="text-end">Date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td style="font-weight:700;">Packed Lunches (20)</td>
+                      <td>Food Rescue</td>
+                      <td><span class="badge badge-red rounded-pill px-3 py-2">Matched</span></td>
+                      <td class="text-end">2026-02-01</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">Kids Clothes (2 bags)</td>
+                      <td>Essentials</td>
+                      <td><span class="badge bg-light text-dark rounded-pill px-3 py-2" style="border:1px solid rgba(0,0,0,.12);">Pending</span></td>
+                      <td class="text-end">2026-01-28</td>
+                    </tr>
+                    <tr>
+                      <td style="font-weight:700;">Pet Food (unopened)</td>
+                      <td>Pet Supplies</td>
+                      <td><span class="badge badge-red rounded-pill px-3 py-2">Matched</span></td>
+                      <td class="text-end">2026-01-18</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="text-end">
+                <a href="#" class="btn btn-outline-red">
+                  View All Donations (UI)
+                </a>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+
+  <script>
+    AOS.init();
+
+    // UI-only save message
+    document.getElementById("saveBtn").addEventListener("click", () => {
+      const msg = document.getElementById("saveMsg");
+      msg.style.display = "block";
+      setTimeout(() => (msg.style.display = "none"), 1800);
+    });
+  </script>
+
+</body>
+</html>
