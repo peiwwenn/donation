@@ -3,7 +3,7 @@ import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBrw9JfpfWOQSaDGHSHqQ9twIT8w3uXNTw",
+  apiKey: "GOOGLE_MAPS_API_KEY",
   authDomain: "smart-food-rescue-v2.firebaseapp.com",
   projectId: "smart-food-rescue-v2",
   storageBucket: "smart-food-rescue-v2.firebasestorage.app",
