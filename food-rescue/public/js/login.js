@@ -1,4 +1,4 @@
-import { loginWithEmail, loginWithGoogle } from "./auth.js";
+import { loginWithGoogle } from "./auth.js";
 
 window.addEventListener("DOMContentLoaded", () => {
   const form = document.querySelector("form");
