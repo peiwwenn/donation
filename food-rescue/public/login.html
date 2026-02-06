@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8" />
-  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login - JomDonate</title>
 
   <link href="assets/img/favicon.png" rel="icon" />
@@ -13,226 +12,187 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&family=Amatic+SC:wght@400;700&display=swap"
-    rel="stylesheet" />
+    rel="stylesheet"
+  />
 
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
   <link href="assets/vendor/aos/aos.css" rel="stylesheet" />
-
   <link href="assets/css/main.css" rel="stylesheet" />
 
   <style>
-    /* 1) Prevent page scroll */
     html, body {
       height: 100%;
       overflow: hidden;
     }
 
-    /* 2) Background image */
-    body.auth-page{
+    body.auth-page {
       background-image: url("assets/img/login.png");
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      background-attachment: fixed;
       min-height: 100vh;
     }
 
-    /* 3) Remove template section padding that causes scroll */
-    body.auth-page .section{
+    body.auth-page .section {
       padding: 0 !important;
       background: transparent !important;
-    }
-
-    /* 4) Fit content into viewport minus header height */
-    body.auth-page .main{
-      background: transparent !important;
-      height: 100vh;
-      padding-top: 92px; /* header height (desktop). change if your header is different */
-    }
-
-    /* 5) Center the card, and ensure it doesn't overflow */
-    body.auth-page .section{
       height: calc(100vh - 92px);
       display: flex;
       align-items: center;
     }
 
-    .auth-card{
-      max-height: calc(100vh - 140px); /* safety space */
-      overflow: auto;                 /* only the card scrolls if screen is too small */
+    body.auth-page .main {
+      height: 100vh;
+      padding-top: 92px;
     }
 
-    /* Mobile header is smaller in your template */
-    @media (max-width: 1199px){
-      body.auth-page .main{ padding-top: 56px; }
-      body.auth-page .section{ height: calc(100vh - 56px); }
+    .auth-card {
+      max-height: calc(100vh - 140px);
+      overflow: auto;
     }
 
-    body.auth-page #header{
-    background: transparent !important;
-    box-shadow: none !important;
+    @media (max-width: 1199px) {
+      body.auth-page .main { padding-top: 56px; }
+      body.auth-page .section { height: calc(100vh - 56px); }
+    }
+
+    body.auth-page #header {
+      background: transparent !important;
+      box-shadow: none !important;
     }
   </style>
-
 </head>
 
 <body class="auth-page">
 
-  <header id="header" class="header fixed-top">
-    <div class="container d-flex align-items-center justify-content-between">
+<header id="header" class="header fixed-top">
+  <div class="container d-flex align-items-center justify-content-between">
+    <a href="index.html" class="logo d-flex align-items-center me-auto me-lg-0">
+      <h1>JomDonate<span>.</span></h1>
+    </a>
+  </div>
+</header>
 
-      <a href="index.html" class="logo d-flex align-items-center me-auto me-lg-0">
-        <h1>JomDonate<span>.</span></h1>
-      </a>
+<main class="main">
+  <section class="section">
+    <div class="container" data-aos="fade-up">
+      <div class="row justify-content-center">
+        <div class="col-lg-6">
 
-    </div>
-  </header>
+          <div class="auth-card">
+            <div class="text-center mb-4">
+              <h2 class="auth-title">Welcome back</h2>
+              <p class="auth-subtitle">Sign in to manage your donations and matches.</p>
+            </div>
 
-  <main class="main">
-    <section class="section">
-      <div class="container" data-aos="fade-up">
-        <div class="row justify-content-center">
-          <div class="col-lg-6">
+            <!-- EMAIL LOGIN -->
+            <form id="loginForm" novalidate>
+              <div class="row gy-3">
 
-            <div class="auth-card">
-              <div class="text-center mb-4">
-                <h2 class="auth-title">Welcome back</h2>
-                <p class="auth-subtitle">Sign in to manage your donations and matches.</p>
+                <div class="col-12">
+                  <label class="form-label">Email</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="loginEmail"
+                    placeholder="you@example.com"
+                    required
+                  />
+                </div>
+
+                <div class="col-12">
+                  <label class="form-label">Password</label>
+                  <div class="input-group">
+                    <input
+                      type="password"
+                      class="form-control"
+                      id="loginPassword"
+                      placeholder="Enter your password"
+                      required
+                    />
+                    <button
+                      class="btn btn-outline-secondary"
+                      type="button"
+                      id="togglePw"
+                      aria-label="Toggle password visibility"
+                    >
+                      <i class="bi bi-eye"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="col-12 text-end">
+                  <a href="forgot-password.html" class="auth-link">Forgot password?</a>
+                </div>
+
+                <div class="col-12">
+                  <div class="error-message" id="loginError"></div>
+                  <button type="submit" class="btn btn-primary w-100 auth-btn">
+                    Login
+                  </button>
+                </div>
+
+              </div>
+            </form>
+
+            <!-- DIVIDER -->
+            <div class="auth-divider my-4">
+              <span>or continue with</span>
+            </div>
+
+            <!-- GOOGLE LOGIN (REDIRECT) -->
+            <div class="row g-3">
+              <div class="col-12">
+                <button
+                  type="button"
+                  class="btn auth-social-btn w-100"
+                  id="loginGoogleBtn"
+                >
+                  <i class="bi bi-google me-2"></i> Continue with Google
+                </button>
               </div>
 
-              <form id="loginForm" class="php-email-form" onsubmit="return false;">
-                <div class="row gy-3">
+              <div class="col-12">
+                <a class="btn auth-social-btn w-100" href="phone-register.html">
+                  <i class="bi bi-telephone-fill me-2"></i> Phone
+                </a>
+              </div>
+            </div>
 
-                  <div class="col-12">
-                    <label class="form-label">Email</label>
-                    <input type="email" class="form-control" id="loginEmail" placeholder="you@example.com" required />
-                  </div>
-
-                  <div class="col-12">
-                    <label class="form-label">Password</label>
-                    <div class="input-group">
-                      <input type="password" class="form-control" id="loginPassword" placeholder="Enter your password" required />
-                      <button class="btn btn-outline-secondary" type="button" id="togglePw">
-                        <i class="bi bi-eye"></i>
-                      </button>
-                    </div>
-                  </div>
-
-                  <div class="col-12 d-flex justify-content-between align-items-center">
-                    <div class="form-check">
-                      <input class="form-check-input" type="checkbox" id="rememberMe">
-                      <label class="form-check-label" for="rememberMe">Remember me</label>
-                    </div>
-                    <a href="forgot-password.html" class="auth-link">Forgot password?</a>
-
-                  </div>
-
-                  <div class="col-12">
-                    <div class="loading">Loading</div>
-                    <div class="error-message" id="loginError"></div>
-                    <div class="sent-message" id="loginSuccess">Login successful!</div>
-
-                    <button type="submit" class="btn btn-primary w-100 auth-btn" id="loginBtn">Login</button>
-
-                    <!-- Divider -->
-                    <div class="auth-divider my-4"><span>or continue with</span></div>
-
-                    <!-- Social -->
-                    <div class="row g-3">
-                      <div class="col-6">
-                        <button type="button" class="btn auth-social-btn w-100" id="loginGoogleBtn">
-                          <i class="bi bi-google me-2"></i> Google
-                        </button>
-                      </div>
-                      <div class="col-6">
-                        <button type="button" class="btn auth-social-btn w-100" id="regPhoneBtn">
-                          <i class="bi bi-telephone-fill me-2"></i> Phone
-                        </button>
-                      </div>
-                    </div>
-
-                  </div>
-
-                  <div class="col-12 text-center mt-3">
-                    <p class="mb-0">
-                      Don’t have an account?
-                      <a href="register.html" class="auth-link">Create an account</a>
-                    </p>
-                  </div>
-
-                </div>
-              </form>
-
-            </div><!-- auth-card -->
+            <div class="text-center mt-3">
+              <p class="mb-0">
+                Don’t have an account?
+                <a href="register.html" class="auth-link">Create an account</a>
+              </p>
+            </div>
 
           </div>
+
         </div>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
+</main>
 
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
+<!-- Vendor scripts -->
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
+<script>
+  AOS.init();
 
-  <button id="loginGoogleBtn" type="button">
-    <img src="assets/img/google.svg" alt="">
-    Continue with Google
-  </button>
+  const toggleBtn = document.getElementById("togglePw");
+  const pwInput = document.getElementById("loginPassword");
 
-  <script type="module">
-    AOS.init();
-
-    // toggle password
-    document.getElementById("togglePw").addEventListener("click", () => {
-      const pw = document.getElementById("loginPassword");
-      pw.type = pw.type === "password" ? "text" : "password";
+  if (toggleBtn && pwInput) {
+    toggleBtn.addEventListener("click", () => {
+      pwInput.type = pwInput.type === "password" ? "text" : "password";
     });
-    
-    // ✅ Firebase email login (replace placeholder success box)
-    import { loginWithEmail, loginWithGoogle } from "./js/auth.js";    
+  }
+</script>
 
-    document.getElementById("loginBtn").addEventListener("click", async(e) => {
-      e.preventDefault();
-
-      const email = document.getElementById("loginEmail")?.value;
-      const password = document.getElementById("loginPassword")?.value;
-
-      try {
-        await loginWithEmail(email, password);
-        document.getElementById("loginError").style.display = "none";
-        document.getElementById("loginSuccess").style.display = "block";
-
-        // optional redirect
-        window.location.href = "index.html";
-      } catch (err) {
-        document.getElementById("loginSuccess").style.display = "none";
-        document.getElementById("loginError").style.display = "block";
-        document.getElementById("loginError").textContent = err.message;
-      }
-    });
-
-    // Social (placeholder)
-    document.getElementById("loginGoogleBtn").addEventListener("click", () => {
-      alert("Google login (placeholder). Connect Firebase Auth later.");
-    });
-
-    // Firebase Google login
-    document.getElementById("loginGoogleBtn").addEventListener("click", async() => {
-      try {
-        await loginWithGoogle();
-        window.location.href = "index.html";
-      } catch (err) {
-        alert(err.message);
-        console.error(err)
-      }
-    });
-
-    // Gmail button (oens Gmail)
-    document.getElementById("loginGmailBtn").addEventListener("click", () => {
-      window.open("https://mail.google.com/", "_blank");
-    });
-  </script>
+<!-- Firebase login logic -->
+<script type="module" src="js/login.js"></script>
 
 </body>
 </html>

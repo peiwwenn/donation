@@ -3,28 +3,41 @@ import {
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
   GoogleAuthProvider,
-  signInWithPopup
+  signInWithRedirect,
+  getRedirectResult
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 import { auth } from "./firebase.js"; // ✅ reuse the SAME auth
 
-// Login
-export async function loginWithEmail(email, password) {
+// ================= EMAIL LOGIN =================
+export function loginWithEmail(email, password) {
   return signInWithEmailAndPassword(auth, email, password);
 }
 
-// Register
-export async function registerWithEmail(email, password) {
+// ================= EMAIL REGISTER =================
+export function registerWithEmail(email, password) {
   return createUserWithEmailAndPassword(auth, email, password);
 }
 
-// Reset password
-export async function resetPassword(email) {
+// ================= RESET PASSWORD =================
+export function resetPassword(email) {
   return sendPasswordResetEmail(auth, email);
 }
 
-// Google login/register
-export async function loginWithGoogle() {
+// ================= GOOGLE LOGIN (REDIRECT) =================
+export function loginWithGoogle() {
   const provider = new GoogleAuthProvider();
-  return signInWithPopup(auth, provider);
+  return signInWithRedirect(auth, provider);
+}
+
+// ================= HANDLE GOOGLE REDIRECT RESULT =================
+// Call this on login.html page load (in login.js) to complete redirect login.
+export async function handleGoogleRedirectResult() {
+  try {
+    const result = await getRedirectResult(auth);
+    return result; // result?.user exists if login succeeded
+  } catch (err) {
+    // If there's no redirect result, Firebase may throw or return null depending on browser
+    return null;
+  }
 }

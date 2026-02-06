@@ -3,7 +3,7 @@ import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBeK74A9mTL-ZrfbOkcmdee4zjTY2sqWss",
+  apiKey: "AIzaSyBrw9JfpfWOQSaDGHSHqQ9twIT8w3uXNTw", // ✅ MUST MATCH WEB APP
   authDomain: "smart-food-rescue-v2.firebaseapp.com",
   projectId: "smart-food-rescue-v2",
   storageBucket: "smart-food-rescue-v2.firebasestorage.app",
@@ -12,5 +12,6 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+
 export const auth = getAuth(app);
 export const db = getFirestore(app);
