@@ -40,35 +40,81 @@
 
 <body class="index-page">
 
-  <header id="header" class="header d-flex align-items-center sticky-top">
-    <div class="container position-relative d-flex align-items-center justify-content-between">
+<header id="header" class="header d-flex align-items-center sticky-top">
+  <div class="container position-relative d-flex align-items-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
-        <h1 class="sitename">JomDonate</h1>
-        <span>.</span>
+    <a href="index.html" class="logo d-flex align-items-center me-auto me-xl-0">
+      <h1 class="sitename">JomDonate</h1>
+      <span>.</span>
+    </a>
+
+    <nav id="navmenu" class="navmenu">
+      <ul>
+        <li><a href="#hero" class="active">Home<br></a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#menu">Items</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#chefs">Founder</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#contact">Contact Us</a></li>
+      </ul>
+      <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+    </nav>
+
+    <!-- ✅ Right corner -->
+    <div class="d-flex align-items-center gap-2">
+
+      <a class="btn-getstarted" href="#create-donation" style="margin-left:0;">
+        Donate
       </a>
 
-      <nav id="navmenu" class="navmenu">
-        <ul>
-          <li><a href="#hero" class="active">Home<br></a></li>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#menu">Items</a></li>
-          <li><a href="#events">Events</a></li>
-          <li><a href="#chefs">Founder</a></li>
-          <li><a href="#gallery">Gallery</a></li>
-          <li><a href="#contact">Contact Us</a></li>
+      <!-- ✅ Login/Register (HIDDEN by default, JS will show when logged out) -->
+      <a
+        class="btn-getstarted"
+        href="login.html"
+        style="margin-left:0; display:none;"
+        id="loginNavBtn"
+      >
+        Login/Register
+      </a>
+
+      <!-- ✅ User avatar dropdown (HIDDEN by default, JS will show when logged in) -->
+      <div class="dropdown" id="userMenu" style="display:none;">
+        <button
+          class="btn p-0 border-0 bg-transparent dropdown-toggle"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+          style="box-shadow:none;"
+        >
+          <img
+            id="userAvatar"
+            src="assets/img/user.png"
+            alt="User"
+            style="width:42px;height:42px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,.5);"
+          />
+        </button>
+
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li class="px-3 py-2">
+            <div id="userName" style="font-weight:600;">User</div>
+            <div id="userEmail" style="font-size:12px;opacity:.75;">user@email.com</div>
+          </li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="profile.html">My Profile</a></li>
+          <li><a class="dropdown-item" href="my-donations.html">My Donations</a></li>
+          <li>
+            <button type="button" class="dropdown-item text-danger" id="logoutBtn">
+              Logout
+            </button>
+          </li>
         </ul>
-        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-      </nav>
-      <div class="d-flex align-items-center gap-2">
-        <a class="btn-getstarted" href="index.html#create-donation" style="margin-left:0;">Donate</a>
-        <a class="btn-getstarted" href="login.html" style="margin-left:0;">Login/Register</a>
       </div>
 
     </div>
-  </header>
+
+  </div>
+</header>
+
 
   <main class="main">
 
@@ -821,7 +867,7 @@
 
           <!-- Form -->
           <div class="col-lg-8 d-flex align-items-center reservation-form-bg" data-aos="fade-up" data-aos-delay="200">
-            <form action id="donateForm" role="form">
+            <form action="forms/create-donation.php" method="post" role="form" class="php-email-form">
 
               <div class="row gy-4">
 
@@ -881,7 +927,7 @@
 
               <!-- Description -->
               <div class="form-group mt-3">
-                <textarea id="description" class="form-control" name="description" rows="5"
+                <textarea class="form-control" name="description" rows="5"
                   placeholder="Describe your donation (e.g., '20 packed lunches, halal, best before today 7pm' or '2 bags of kids clothes, size M')"
                   required=""></textarea>
               </div>
@@ -1157,13 +1203,8 @@
 
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
-  <script src="js/map_picker.js"></script>
+  <script type="module" src="js/index-auth.js"></script>
 
-<script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=%VITE_GOOGLE_MAPS_API_KEY%&callback=initMap">
-</script>
-
-<script type="module" src="js/donate.js"></script>
 </body>
 
 </html>

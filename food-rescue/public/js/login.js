@@ -1,53 +1,57 @@
-import { loginWithGoogle, loginWithEmail } from "./auth.js";
+import {
+  loginWithEmail,
+  loginWithGoogleRedirect,
+  handleGoogleRedirectResult
+} from "./auth.js";
 
-window.addEventListener("DOMContentLoaded", () => {
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { auth } from "./firebase.js"; // must exist at same level as login.js
+
+window.addEventListener("DOMContentLoaded", async () => {
   const form = document.getElementById("loginForm");
   const emailEl = document.getElementById("loginEmail");
   const pwEl = document.getElementById("loginPassword");
   const googleBtn = document.getElementById("loginGoogleBtn");
   const errorBox = document.getElementById("loginError");
 
-  const params = new URLSearchParams(window.location.search);
-  const redirectTo = params.get("redirect") || "index.html";
+  const redirectTo = "index.html";
 
-  // ================= EMAIL LOGIN =================
-  if (form) {
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      errorBox.textContent = "";
+  // ✅ MOST RELIABLE: if user is signed in, go index
+  onAuthStateChanged(auth, (user) => {
+    console.log("🔎 onAuthStateChanged:", user);
+    if (user) window.location.href = redirectTo;
+  });
 
-      try {
-        await loginWithEmail(
-          emailEl.value.trim(),
-          pwEl.value
-        );
-        window.location.href = redirectTo;
-      } catch (err) {
-        console.error(err);
-        errorBox.textContent = err.message;
-      }
-    });
+  // ✅ OPTIONAL: handle redirect result (sometimes null)
+  try {
+    const result = await handleGoogleRedirectResult();
+    console.log("🔎 getRedirectResult:", result);
+    if (result?.user) window.location.href = redirectTo;
+  } catch (err) {
+    console.error("❌ redirect result error:", err);
+    if (errorBox) errorBox.textContent = err?.message || String(err);
   }
 
-  // ================= GOOGLE LOGIN =================
-  if (googleBtn) {
-    googleBtn.addEventListener("click", async () => {
-      try {
-        await loginWithGoogle();
-        window.location.href = redirectTo;
-      } catch (err) {
-        console.error(err);
+  // EMAIL LOGIN
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (errorBox) errorBox.textContent = "";
 
-        // Ignore harmless popup errors
-        if (
-          err.code === "auth/popup-closed-by-user" ||
-          err.code === "auth/cancelled-popup-request"
-        ) {
-          return;
-        }
+    try {
+      await loginWithEmail(emailEl.value.trim(), pwEl.value);
+      window.location.href = redirectTo;
+    } catch (err) {
+      if (errorBox) errorBox.textContent = err.message;
+    }
+  });
 
-        alert(err.message);
-      }
-    });
-  }
+  // GOOGLE LOGIN
+  googleBtn?.addEventListener("click", async () => {
+    try {
+      await loginWithGoogleRedirect();
+      // redirect happens after reload
+    } catch (err) {
+      alert(err.message);
+    }
+  });
 });

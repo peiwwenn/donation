@@ -137,33 +137,21 @@
     </section>
   </main>
 
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
 
-  <script>
-    AOS.init();
+<script>
+  AOS.init();
 
-    // show/hide password
-    document.getElementById("toggleRegPw").addEventListener("click", () => {
-      const pw = document.getElementById("regPassword");
-      pw.type = pw.type === "password" ? "text" : "password";
-    });
+  document.getElementById("toggleRegPw").addEventListener("click", () => {
+    const pw = document.getElementById("regPassword");
+    pw.type = pw.type === "password" ? "text" : "password";
+  });
+</script>
 
-    // register (placeholder)
-    document.getElementById("registerBtn").addEventListener("click", () => {
-      document.getElementById("regError").style.display = "none";
-      document.getElementById("regSuccess").style.display = "block";
-    });
+<!-- ✅ REAL Firebase logic -->
+<script type="module" src="js/register.js"></script>
 
-    // Social (placeholder)
-    document.getElementById("regGoogleBtn").addEventListener("click", () => {
-      alert("Google register/login (placeholder). Connect Firebase Auth later.");
-    });
-
-    document.getElementById("regGmailBtn").addEventListener("click", () => {
-      window.open("https://mail.google.com/", "_blank");
-    });
-  </script>
 
 </body>
 </html>
