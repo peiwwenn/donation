@@ -5,10 +5,16 @@ import {
   GoogleAuthProvider,
   signInWithRedirect,
   getRedirectResult,
-  signOut
+  signOut,
+  fetchSignInMethodsForEmail
 } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 import { auth } from "./firebase.js";
+
+// ✅ check how this email signs in (google/password/etc)
+export function getSignInMethods(email) {
+  return fetchSignInMethodsForEmail(auth, email);
+}
 
 // ================= EMAIL LOGIN =================
 export function loginWithEmail(email, password) {

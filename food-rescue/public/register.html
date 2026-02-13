@@ -68,7 +68,7 @@
                 <p class="auth-subtitle">Register to donate and get matched faster.</p>
               </div>
 
-              <form id="registerForm" class="php-email-form" onsubmit="return false;">
+              <form id="registerForm" class="php-email-form">
                 <div class="row gy-3">
 
                   <div class="col-12">
@@ -86,6 +86,16 @@
                     <div class="input-group">
                       <input type="password" class="form-control" id="regPassword" placeholder="Create a password" required />
                       <button class="btn btn-outline-secondary" type="button" id="toggleRegPw">
+                        <i class="bi bi-eye"></i>
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="col"col-12>
+                    <label class="form-label">Confirm Password</label>
+                    <div class="input-group">
+                      <input type="password" class="form-control" id="regConfirmPassword" placeholder="Confirm your password" required />
+                      <button class="btn btn-outline-secondary" type="button" id="toggleRegConfirmPw">
                         <i class="bi bi-eye"></i>
                       </button>
                     </div>
@@ -143,15 +153,24 @@
 <script>
   AOS.init();
 
-  document.getElementById("toggleRegPw").addEventListener("click", () => {
-    const pw = document.getElementById("regPassword");
-    pw.type = pw.type === "password" ? "text" : "password";
+  const pwInput = document.getElementById("regPassword");
+  const confirmPwInput = document.getElementById("regConfirmPassword");
+
+  const togglePw = document.getElementById("toggleRegPw");
+  const toggleConfirmPw = document.getElementById("toggleRegConfirmPw");
+
+  togglePw.addEventListener("click", () => {
+    pwInput.type = pwInput.type === "password" ? "text" : "password";
+  });
+
+  toggleConfirmPw.addEventListener("click", () => {
+    confirmPwInput.type =
+      confirmPwInput.type === "password" ? "text" : "password";
   });
 </script>
 
 <!-- ✅ REAL Firebase logic -->
-<script type="module" src="js/register.js"></script>
-
+<script type="module" src="js/register.js?v=20260209-2"></script>
 
 </body>
 </html>

@@ -1,11 +1,15 @@
 import {
   loginWithEmail,
+  getSignInMethods,
   loginWithGoogleRedirect,
   handleGoogleRedirectResult
 } from "./auth.js";
 
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { auth } from "./firebase.js"; // must exist at same level as login.js
+
+import { GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+const provider = new GoogleAuthProvider();
 
 window.addEventListener("DOMContentLoaded", async () => {
   const form = document.getElementById("loginForm");
@@ -37,21 +41,36 @@ window.addEventListener("DOMContentLoaded", async () => {
     e.preventDefault();
     if (errorBox) errorBox.textContent = "";
 
+    const email = emailEl.value.trim();
+    const password = pwEl.value;
+
     try {
-      await loginWithEmail(emailEl.value.trim(), pwEl.value);
+      const methods = await getSignInMethods(email);
+
+      // Google-only account → block email/password login
+      if (methods.includes("google.com") && !methods.includes("password")) {
+        if (errorBox) errorBox.textContent = "This email uses Google Sign-In. Please login with Google.";
+        return;
+      }
+
+      // proceed with email/password login
+      await loginWithEmail(email, password);
       window.location.href = redirectTo;
     } catch (err) {
-      if (errorBox) errorBox.textContent = err.message;
+      if (errorBox) errorBox.textContent = err.message || String(err);
     }
   });
 
   // GOOGLE LOGIN
-  googleBtn?.addEventListener("click", async () => {
+  googleBtn.addEventListener("click", async () => {
     try {
-      await loginWithGoogleRedirect();
-      // redirect happens after reload
+      console.log("Google login clicked");
+      const result = await signInWithPopup(auth, provider);
+      console.log("✅ Logged in as:", result.user.email);
+      window.location.href = "index.html";
     } catch (err) {
-      alert(err.message);
+      console.error("❌ Google login error:", err.code, err.message);
+      alert(`${err.code}\n${err.message}`);
     }
   });
 });

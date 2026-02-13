@@ -120,6 +120,10 @@
                     <small style="opacity:.75;">Example: +60 12 345 6789</small>
                   </div>
 
+                  <div class="col-12">
+                    <div id="recaptcha-container"></div>
+                  </div>
+
                   <!-- Step 1 buttons -->
                   <div class="col-12" id="stepSend">
                     <div class="loading" id="sendLoading" style="display:none;">Loading</div>
@@ -208,65 +212,68 @@
       verifyError.textContent = "";
     }
 
-    // Frontend demo: Send OTP
-    document.getElementById("sendOtpBtn").addEventListener("click", () => {
-      resetSendMsgs();
-      resetVerifyMsgs();
+  //   // Frontend demo: Send OTP
+  //   document.getElementById("sendOtpBtn").addEventListener("click", () => {
+  //     resetSendMsgs();
+  //     resetVerifyMsgs();
 
-      const name = document.getElementById("phoneName").value.trim();
-      const phone = document.getElementById("phoneNumber").value.trim();
+  //     const name = document.getElementById("phoneName").value.trim();
+  //     const phone = document.getElementById("phoneNumber").value.trim();
 
-      if(!name){
-        sendError.textContent = "Please enter your name.";
-        sendError.style.display = "block";
-        return;
-      }
-      if(!phone){
-        sendError.textContent = "Please enter your phone number.";
-        sendError.style.display = "block";
-        return;
-      }
+  //     if(!name){
+  //       sendError.textContent = "Please enter your name.";
+  //       sendError.style.display = "block";
+  //       return;
+  //     }
+  //     if(!phone){
+  //       sendError.textContent = "Please enter your phone number.";
+  //       sendError.style.display = "block";
+  //       return;
+  //     }
 
-      sendLoading.style.display = "block";
+  //     sendLoading.style.display = "block";
 
-      // Simulate SMS request
-      setTimeout(() => {
-        sendLoading.style.display = "none";
-        sendSuccess.style.display = "block";
+  //     // Simulate SMS request
+  //     setTimeout(() => {
+  //       sendLoading.style.display = "none";
+  //       sendSuccess.style.display = "block";
 
-        // show OTP step
-        stepVerify.style.display = "block";
-        // optionally hide send step button
-        // stepSend.style.display = "none";
-      }, 700);
-    });
+  //       // show OTP step
+  //       stepVerify.style.display = "block";
+  //       // optionally hide send step button
+  //       // stepSend.style.display = "none";
+  //     }, 700);
+  //   });
 
-    // Frontend demo: Verify OTP
-    document.getElementById("verifyOtpBtn").addEventListener("click", () => {
-      resetVerifyMsgs();
+  //   // Frontend demo: Verify OTP
+  //   document.getElementById("verifyOtpBtn").addEventListener("click", () => {
+  //     resetVerifyMsgs();
 
-      const code = document.getElementById("otpCode").value.trim();
-      if(code.length !== 6){
-        verifyError.textContent = "Please enter the 6-digit verification code.";
-        verifyError.style.display = "block";
-        return;
-      }
+  //     const code = document.getElementById("otpCode").value.trim();
+  //     if(code.length !== 6){
+  //       verifyError.textContent = "Please enter the 6-digit verification code.";
+  //       verifyError.style.display = "block";
+  //       return;
+  //     }
 
-      verifySuccess.style.display = "block";
+  //     verifySuccess.style.display = "block";
 
-      // Simulate redirect
-      setTimeout(() => {
-        window.location.href = "login.html";
-      }, 900);
-    });
+  //     // Simulate redirect
+  //     setTimeout(() => {
+  //       window.location.href = "login.html";
+  //     }, 900);
+  //   });
 
-    // Resend OTP (frontend demo)
-    document.getElementById("resendOtpBtn").addEventListener("click", () => {
-      resetSendMsgs();
-      sendSuccess.textContent = "Verification code resent! Please check your SMS.";
-      sendSuccess.style.display = "block";
-    });
+  //   // Resend OTP (frontend demo)
+  //   document.getElementById("resendOtpBtn").addEventListener("click", () => {
+  //     resetSendMsgs();
+  //     sendSuccess.textContent = "Verification code resent! Please check your SMS.";
+  //     sendSuccess.style.display = "block";
+  //   });
   </script>
+
+  <script type="module" src="js/phone-register.js"></script>
+
 
 </body>
 </html>
