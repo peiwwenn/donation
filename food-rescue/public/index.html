@@ -903,9 +903,9 @@
                 </div>
 
                 <!-- Quantity -->
-                <div class="col-lg-4 col-md-6">
+                <!-- <div class="col-lg-4 col-md-6">
                   <input type="number" class="form-control" name="quantity" id="quantity" placeholder="Quantity (e.g., 10 meals / 3 bags)" required="">
-                </div>
+                </div> -->
 
                 <!-- Preferred Receiver -->
                  <div class="col-lg-4 col-md-6">
@@ -918,28 +918,9 @@
                   </select>
                 </div>
 
-                <!-- Location -->
-                <div class="col-lg-4 col-md-6">
-                  <input type="text" class="form-control" name="location" id="location" placeholder="Pickup Location (Address)" required="">
-                </div>
-
-              </div>
-
-              <!-- Description -->
-              <div class="form-group mt-3">
-                <textarea class="form-control" name="description" rows="5"
-                  placeholder="Describe your donation (e.g., '20 packed lunches, halal, best before today 7pm' or '2 bags of kids clothes, size M')"
-                  required=""></textarea>
-              </div>
-
-              <!-- Optional: Expiry (for food) -->
-              <div class="row gy-4 mt-2">
-                <div class="col-lg-6 col-md-6">
-                  <input type="text" class="form-control" name="expiry_info" id="expiry_info"
-                    placeholder="Expiry Info (optional, for food: date/time)">
-                </div>
-                <div class="col-lg-6 col-md-6">
-                  <select class="form-control" name="condition" id="condition">
+                <!-- Item Condition -->
+                 <div class="col-lg-8 col-md-6">
+                  <select class="form-control input-dropdown" name="condition" id="condition" required>
                     <option value="" disabled selected>Item Condition (optional)</option>
                     <option value="new">New</option>
                     <option value="like_new">Like New</option>
@@ -947,7 +928,28 @@
                     <option value="used_fair">Used - Fair</option>
                   </select>
                 </div>
+
+              <!-- Description -->
+              <div class="form-group mt-3">
+                <textarea class="form-control" name="description" rows="5"
+                  placeholder="Describe your donation:"
+                  placeholder="-quantity/size of your food/items (e.g. 20 packed lunch, halal or 2 bags of kids clothes)"
+                  placeholder="-expiry info (e.g. food:date)"
+                  required=""></textarea>
               </div>
+
+              <!-- Location -->
+              <div class="col-lg-12 col-md-8">
+                <input type="text" class="form-control" name="location" id="location" placeholder="Pickup Location (Address)" required="">
+              </div>
+
+              <!-- Optional: Expiry (for food) -->
+              <!-- <div class="row gy-4 mt-2">
+                <div class="col-lg-6 col-md-6">
+                  <input type="text" class="form-control" name="expiry_info" id="expiry_info"
+                    placeholder="Expiry Info (optional, for food: date/time)">
+                </div>
+              </div> -->
 
               <div class="text-center mt-3">
                 <div class="loading">Loading</div>
