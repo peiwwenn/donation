@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
   <title>Login - JomDonate</title>
 
   <link href="assets/img/favicon.png" rel="icon" />
@@ -12,8 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&family=Amatic+SC:wght@400;700&display=swap"
-    rel="stylesheet"
-  />
+    rel="stylesheet" />
 
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
@@ -21,43 +20,21 @@
   <link href="assets/css/main.css" rel="stylesheet" />
 
   <style>
-    html, body {
-      height: 100%;
-      overflow: hidden;
+    body.auth-page .section,
+    body.auth-page .container{
+      background: transparent !important;
     }
 
-    body.auth-page {
+    body.auth-page{
       background-image: url("assets/img/login.png");
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
+      background-attachment: fixed;
       min-height: 100vh;
     }
 
-    body.auth-page .section {
-      padding: 0 !important;
-      background: transparent !important;
-      height: calc(100vh - 92px);
-      display: flex;
-      align-items: center;
-    }
-
-    body.auth-page .main {
-      height: 100vh;
-      padding-top: 92px;
-    }
-
-    .auth-card {
-      max-height: calc(100vh - 140px);
-      overflow: auto;
-    }
-
-    @media (max-width: 1199px) {
-      body.auth-page .main { padding-top: 56px; }
-      body.auth-page .section { height: calc(100vh - 56px); }
-    }
-
-    body.auth-page #header {
+    body.auth-page #header{
       background: transparent !important;
       box-shadow: none !important;
     }
@@ -75,7 +52,7 @@
 </header>
 
 <main class="main">
-  <section class="section">
+  <section class="section light-background">
     <div class="container" data-aos="fade-up">
       <div class="row justify-content-center">
         <div class="col-lg-6">
@@ -83,91 +60,44 @@
           <div class="auth-card">
             <div class="text-center mb-4">
               <h2 class="auth-title">Welcome back</h2>
-              <p class="auth-subtitle">Sign in to manage your donations and matches.</p>
+              <p class="auth-subtitle">Login using Google or Phone to continue.</p>
             </div>
 
-            <!-- EMAIL LOGIN -->
-            <form id="loginForm" novalidate>
-              <div class="row gy-3">
-
-                <div class="col-12">
-                  <label class="form-label">Email</label>
-                  <input
-                    type="email"
-                    class="form-control"
-                    id="loginEmail"
-                    placeholder="you@example.com"
-                    required
-                  />
-                </div>
-
-                <div class="col-12">
-                  <label class="form-label">Password</label>
-                  <div class="input-group">
-                    <input
-                      type="password"
-                      class="form-control"
-                      id="loginPassword"
-                      placeholder="Enter your password"
-                      required
-                    />
-                    <button
-                      class="btn btn-outline-secondary"
-                      type="button"
-                      id="togglePw"
-                      aria-label="Toggle password visibility"
-                    >
-                      <i class="bi bi-eye"></i>
-                    </button>
-                  </div>
-                </div>
-
-                <div class="col-12 text-end">
-                  <a href="forgot-password.html" class="auth-link">Forgot password?</a>
-                </div>
-
-                <div class="col-12">
-                  <div class="error-message" id="loginError"></div>
-                  <button type="submit" class="btn btn-primary w-100 auth-btn">
-                    Login
-                  </button>
-                </div>
-
-              </div>
-            </form>
-
-            <!-- DIVIDER -->
-            <div class="auth-divider my-4">
-              <span>or continue with</span>
+            <div class="auth-divider mb-4">
+              <span>Choose a login method</span>
             </div>
 
-            <!-- GOOGLE LOGIN (REDIRECT) -->
             <div class="row g-3">
+
+              <!-- Google Login -->
               <div class="col-12">
-                <button
-                  type="button"
-                  class="btn auth-social-btn w-100"
-                  id="loginGoogleBtn"
-                >
+                <button type="button" class="btn auth-social-btn w-100" id="loginGoogleBtn">
                   <i class="bi bi-google me-2"></i> Continue with Google
                 </button>
               </div>
 
+              <!-- Phone Login -->
               <div class="col-12">
                 <a class="btn auth-social-btn w-100" href="phone-register.html">
-                  <i class="bi bi-telephone-fill me-2"></i> Phone
+                  <i class="bi bi-telephone-fill me-2"></i> Continue with Phone
                 </a>
               </div>
+
             </div>
 
-            <div class="text-center mt-3">
+            <!-- Optional error message -->
+            <div class="mt-3">
+              <div class="error-message" id="loginError"></div>
+            </div>
+
+            <div class="col-12 text-center mt-3">
               <p class="mb-0">
                 Don’t have an account?
                 <a href="register.html" class="auth-link">Create an account</a>
               </p>
             </div>
 
-          </div>
+          </div><!-- auth-card -->
 
         </div>
       </div>
@@ -175,20 +105,10 @@
   </section>
 </main>
 
-<!-- Vendor scripts -->
 <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="assets/vendor/aos/aos.js"></script>
 <script>
   AOS.init();
-
-  const toggleBtn = document.getElementById("togglePw");
-  const pwInput = document.getElementById("loginPassword");
-
-  if (toggleBtn && pwInput) {
-    toggleBtn.addEventListener("click", () => {
-      pwInput.type = pwInput.type === "password" ? "text" : "password";
-    });
-  }
 </script>
 
 <!-- Firebase login logic -->

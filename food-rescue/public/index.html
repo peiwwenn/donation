@@ -100,18 +100,16 @@
             <div id="userEmail" style="font-size:12px;opacity:.75;">user@email.com</div>
           </li>
           <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="profile.html">My Profile</a></li>
-          <li><a class="dropdown-item" href="my-donations.html">My Donations</a></li>
+          <li><a class="dropdown-item" href="profile.html"><i class="bi bi-person me-2"></i>My Profile</a></li>
+          <li><a class="dropdown-item" href="my-donations.html"><i class="bi bi-box2-heart me-2"></i>My Donations</a></li>
           <li>
-            <button type="button" class="dropdown-item text-danger" id="logoutBtn">
+            <button type="button" class="dropdown-item text-danger d-flex align-items-center" id="logoutBtn">
+              <i class="bi bi-box-arrow-right me-2"></i>
               Logout
             </button>
           </li>
-        </ul>
       </div>
-
     </div>
-
   </div>
 </header>
 
@@ -1208,14 +1206,19 @@
   <script type="module" src="js/index-auth.js"></script>
 
   <script>
+    // ONLY handle dropdowns inside .custom-dropdown
     document.querySelectorAll('.custom-dropdown').forEach(dropdown => {
       const button = dropdown.querySelector('.dropdown-btn');
       const menu = dropdown.querySelector('.dropdown-menu');
 
-      button.addEventListener('click', () => {
-        document.querySelectorAll('.dropdown-menu').forEach(m => {
+      button.addEventListener('click', (e) => {
+        e.stopPropagation();
+
+        // close other custom dropdown menus only
+        document.querySelectorAll('.custom-dropdown .dropdown-menu').forEach(m => {
           if (m !== menu) m.style.display = 'none';
         });
+
         menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
       });
 
@@ -1227,12 +1230,14 @@
       });
     });
 
-    document.addEventListener('click', e => {
+    // close ONLY custom dropdown menus when clicking outside
+    document.addEventListener('click', (e) => {
       if (!e.target.closest('.custom-dropdown')) {
-        document.querySelectorAll('.dropdown-menu').forEach(m => m.style.display = 'none');
+        document.querySelectorAll('.custom-dropdown .dropdown-menu').forEach(m => m.style.display = 'none');
       }
     });
   </script>
+
 
 </body>
 
