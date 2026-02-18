@@ -1,5 +1,9 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import {
+  getAuth,
+  setPersistence,
+  browserSessionPersistence
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -15,3 +19,10 @@ const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
 export const db = getFirestore(app);
+
+// ✅ Session-only login (recommended for your case)
+// User stays logged in until they close the browser tab/window.
+// After logout, it won’t “auto appear” logged in again.
+setPersistence(auth, browserSessionPersistence).catch((err) => {
+  console.error("Auth persistence error:", err);
+});
