@@ -857,7 +857,6 @@
       </div><!-- End Section Title -->
 
       <div class="container">
-
         <div class="row g-0" data-aos="fade-up" data-aos-delay="100">
 
           <!-- Left Image -->
@@ -870,44 +869,38 @@
               <div class="row gy-4">
 
                 <div class="col-lg-4 col-md-6">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required="">
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
                 </div>
 
                 <div class="col-lg-4 col-md-6">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required="">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
                 </div>
 
                 <div class="col-lg-4 col-md-6">
-                  <input type="text" class="form-control" name="phone" id="phone" placeholder="Your Phone" required="">
+                  <input type="text" class="form-control" name="phone" id="phone" placeholder="Your Phone" required>
                 </div>
 
                 <!-- Donation Type -->
-                 <div class="col-lg-4 col-md-6">
-                  <select class="form-control input-dropdown" id="donation_type" required>
+                <div class="col-lg-4 col-md-6">
+                  <select class="form-control input-dropdown" name="donation_type" id="donation_type" required>
                     <option value="" disabled selected>Donation Type</option>
                     <option value="food">Food Rescue</option>
                     <option value="item">Item Donation</option>
                   </select>
                 </div>
 
-                <!-- Pickup Date -->
+                <!-- Delivery Method -->
                 <div class="col-lg-4 col-md-6">
-                  <input type="date" name="pickup_date" class="form-control" id="pickup_date" required="">
+                  <select class="form-control input-dropdown" name="delivery_method" id="delivery_method" required>
+                    <option value="" disabled selected>Delivery Method</option>
+                    <option value="pickup">Pickup (We come and collect)</option>
+                    <option value="delivery">Delivery (You deliver to us)</option>
+                  </select>
                 </div>
-
-                <!-- Pickup Time -->
-                <div class="col-lg-4 col-md-6">
-                  <input type="time" name="pickup_time" class="form-control" id="pickup_time" required="">
-                </div>
-
-                <!-- Quantity -->
-                <!-- <div class="col-lg-4 col-md-6">
-                  <input type="number" class="form-control" name="quantity" id="quantity" placeholder="Quantity (e.g., 10 meals / 3 bags)" required="">
-                </div> -->
 
                 <!-- Preferred Receiver -->
-                 <div class="col-lg-4 col-md-6">
-                  <select class="form-control input-dropdown" id="preferred_receiver" required>
+                <div class="col-lg-4 col-md-6">
+                  <select class="form-control input-dropdown" name="preferred_receiver" id="preferred_receiver" required>
                     <option value="" disabled selected>Preferred Receiver</option>
                     <option value="any">Any NGO Nearby</option>
                     <option value="orphanage">Orphanage</option>
@@ -916,10 +909,10 @@
                   </select>
                 </div>
 
-                <!-- Item Condition -->
-                 <div class="col-lg-8 col-md-6">
-                  <select class="form-control input-dropdown" name="condition" id="condition" required>
-                    <option value="" disabled selected>Item Condition (optional)</option>
+                <!-- Item Condition (optional) -->
+                <div class="col-lg-8 col-md-6">
+                  <select class="form-control input-dropdown" name="condition" id="condition">
+                    <option value="" selected>Item Condition (optional)</option>
                     <option value="new">New</option>
                     <option value="like_new">Like New</option>
                     <option value="used_good">Used - Good</option>
@@ -927,42 +920,78 @@
                   </select>
                 </div>
 
-              <!-- Description -->
-              <div class="form-group mt-3">
-                <textarea class="form-control" name="description" rows="5"
-                  placeholder="Describe your donation:"
-                  placeholder="-quantity/size of your food/items (e.g. 20 packed lunch, halal or 2 bags of kids clothes)"
-                  placeholder="-expiry info (e.g. food:date)"
-                  required=""></textarea>
-              </div>
+                <!-- ================= PICKUP FIELDS (only when method = pickup) ================= -->
+                <div id="pickupFields" class="row gy-4" style="display:none; width:100%; margin-left:0; margin-right:0;">
 
-              <!-- Location -->
-              <div class="col-lg-12 col-md-8">
-                <input type="text" class="form-control" name="location" id="location" placeholder="Pickup Location (Address)" required="">
-              </div>
+                  <!-- Pickup Date -->
+                  <div class="col-lg-4 col-md-6">
+                    <input type="date" name="pickup_date" class="form-control" id="pickup_date">
+                  </div>
 
-              <!-- Optional: Expiry (for food) -->
-              <!-- <div class="row gy-4 mt-2">
-                <div class="col-lg-6 col-md-6">
-                  <input type="text" class="form-control" name="expiry_info" id="expiry_info"
-                    placeholder="Expiry Info (optional, for food: date/time)">
+                  <!-- Pickup Time -->
+                  <div class="col-lg-4 col-md-6">
+                    <input type="time" name="pickup_time" class="form-control" id="pickup_time">
+                  </div>
+
+                  <!-- Pickup Location -->
+                  <div class="col-lg-12 col-md-8">
+                    <input type="text" class="form-control" name="location" id="location"
+                      placeholder="Pickup Location (Address)">
+                  </div>
                 </div>
-              </div> -->
 
-              <div class="text-center mt-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">
-                  Your donation was submitted! We’ll match you with a nearby NGO and notify you shortly.
+                <!-- ================= DELIVERY FIELDS (only when method = delivery) ================= -->
+                <div id="deliveryFields" class="row gy-4" style="display:none; width:100%; margin-left:0; margin-right:0;">
+
+                  <div class="col-lg-12">
+                    <div class="p-3" style="border:1px solid rgba(0,0,0,.1); border-radius:10px;">
+                      <div style="font-weight:600; margin-bottom:6px;">Our Drop-off Address</div>
+
+                      <div id="ourAddress">
+                        <a
+                          href="https://maps.app.goo.gl/JjwWYmYxc5FKfCr67"
+                          target="_blank"
+                          rel="noopener"
+                          style="text-decoration:underline;"
+                        >
+                          Jalan Lagoon Selatan, Bandar Sunway,<br>
+                          47500 Subang Jaya, Selangor.
+                        </a>
+                      </div>
+
+                      <div style="margin-top:10px; font-size:14px; opacity:.8;">
+                        Please deliver your donation to the address above. Choose your delivery date below.
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Delivery Date (required for delivery) -->
+                  <div class="col-lg-4 col-md-6">
+                    <input type="date" name="delivery_date" class="form-control" id="delivery_date">
+                  </div>
                 </div>
-                <button type="submit">Submit Donation</button>
-              </div>
+
+                <!-- Description -->
+                <div class="col-lg-12">
+                  <textarea class="form-control" name="description" rows="5" required
+                    placeholder="Describe your donation (include quantity/size + expiry info if food). Example: 20 packed lunches (halal), expiry 2026-02-20. Or 2 bags of kids clothes."></textarea>
+                </div>
+
+                <div class="text-center mt-3">
+                  <div class="loading">Loading</div>
+                  <div class="error-message"></div>
+                  <div class="sent-message">
+                    Your donation was submitted! We’ll match you with a nearby NGO and notify you shortly.
+                  </div>
+                  <button type="submit">Submit Donation</button>
+                </div>
+
+              </div><!-- End row gy-4 -->
 
             </form>
           </div><!-- End Form -->
 
         </div>
-
       </div>
 
     </section><!-- /Create Donation Section -->
@@ -1237,7 +1266,65 @@
       }
     });
   </script>
+  <script>
+    const deliveryMethod = document.getElementById("delivery_method");
 
+    const pickupFields = document.getElementById("pickupFields");
+    const deliveryFields = document.getElementById("deliveryFields");
+
+    const pickupDate = document.getElementById("pickup_date");
+    const pickupTime = document.getElementById("pickup_time");
+    const pickupLocation = document.getElementById("location");
+
+    const deliveryDate = document.getElementById("delivery_date");
+    const deliveryTime = document.getElementById("delivery_time");
+
+    function setPickupRequired(isRequired) {
+      pickupDate.required = isRequired;
+      pickupTime.required = isRequired;
+      pickupLocation.required = isRequired;
+    }
+
+    function setDeliveryRequired(isRequired) {
+      deliveryDate.required = isRequired; // date required for delivery
+      // deliveryTime is optional, so no required toggle
+    }
+
+    function handleMethodChange() {
+      const method = deliveryMethod.value;
+
+      if (method === "pickup") {
+        pickupFields.style.display = "flex";
+        deliveryFields.style.display = "none";
+
+        setPickupRequired(true);
+        setDeliveryRequired(false);
+
+        // Clear delivery values
+        if (deliveryDate) deliveryDate.value = "";
+        if (deliveryTime) deliveryTime.value = "";
+      } else if (method === "delivery") {
+        pickupFields.style.display = "none";
+        deliveryFields.style.display = "flex";
+
+        setPickupRequired(false);
+        setDeliveryRequired(true);
+
+        // Clear pickup values
+        pickupDate.value = "";
+        pickupTime.value = "";
+        pickupLocation.value = "";
+      } else {
+        pickupFields.style.display = "none";
+        deliveryFields.style.display = "none";
+        setPickupRequired(false);
+        setDeliveryRequired(false);
+      }
+    }
+
+    deliveryMethod.addEventListener("change", handleMethodChange);
+    handleMethodChange();
+  </script>
 
 </body>
 
