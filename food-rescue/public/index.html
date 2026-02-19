@@ -1133,35 +1133,127 @@
 
         </div>
 
-        <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="600">
+        <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="600" novalidate>
           <div class="row gy-4">
 
+            <!-- Name -->
             <div class="col-md-6">
-              <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
+              <label class="form-label" for="contactName">Full Name</label>
+              <input
+                type="text"
+                id="contactName"
+                name="name"
+                class="form-control"
+                placeholder="e.g., Isabelle"
+                autocomplete="name"
+                minlength="2"
+                required
+              />
+              <div class="invalid-feedback">Please enter your name (at least 2 characters).</div>
             </div>
 
-            <div class="col-md-6 ">
-              <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
+            <!-- Email -->
+            <div class="col-md-6">
+              <label class="form-label" for="contactEmail">Email Address</label>
+              <input
+                type="email"
+                id="contactEmail"
+                name="email"
+                class="form-control"
+                placeholder="e.g., isabelle@email.com"
+                autocomplete="email"
+                required
+              />
+              <div class="invalid-feedback">Please enter a valid email address.</div>
             </div>
 
+            <!-- Topic -->
+            <div class="col-md-6">
+              <label class="form-label" for="contactTopic">Topic</label>
+              <select id="contactTopic" name="topic" class="form-select" required>
+                <option value="" selected disabled>Select a topic</option>
+                <option value="General">General</option>
+                <option value="Donation">Donation</option>
+                <option value="Partnership">Partnership</option>
+                <option value="Technical">Technical Support</option>
+                <option value="Feedback">Feedback</option>
+              </select>
+              <div class="invalid-feedback">Please choose a topic.</div>
+            </div>
+
+            <!-- Phone (optional) -->
+            <div class="col-md-6">
+              <label class="form-label" for="contactPhone">Phone (Optional)</label>
+              <input
+                type="tel"
+                id="contactPhone"
+                name="phone"
+                class="form-control"
+                placeholder="e.g., +60 12-345 6789"
+                autocomplete="tel"
+                inputmode="tel"
+              />
+              <div class="form-text">We’ll only use this to contact you about your message.</div>
+            </div>
+
+            <!-- Subject -->
             <div class="col-md-12">
-              <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
+              <label class="form-label" for="contactSubject">Subject</label>
+              <input
+                type="text"
+                id="contactSubject"
+                name="subject"
+                class="form-control"
+                placeholder="How can we help?"
+                minlength="3"
+                required
+              />
+              <div class="invalid-feedback">Please enter a subject (at least 3 characters).</div>
             </div>
 
+            <!-- Message -->
             <div class="col-md-12">
-              <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+              <label class="form-label" for="contactMessage">Message</label>
+              <textarea
+                class="form-control"
+                id="contactMessage"
+                name="message"
+                rows="6"
+                placeholder="Write your message here..."
+                minlength="10"
+                maxlength="1000"
+                required
+              ></textarea>
+              <div class="d-flex justify-content-between align-items-center mt-1">
+                <div class="invalid-feedback m-0">Please write at least 10 characters.</div>
+                <small class="text-muted"><span id="msgCount">0</span>/1000</small>
+              </div>
             </div>
 
-            <div class="col-md-12 text-center">
-              <div class="loading">Loading</div>
-              <div class="error-message"></div>
-              <div class="sent-message">Your message has been sent. Thank you!</div>
+            <!-- Anti-spam honeypot (hidden) -->
+            <div class="d-none" aria-hidden="true">
+              <input type="text" name="website" tabindex="-1" autocomplete="off" />
+            </div>
 
-              <button type="submit">Send Message</button>
+            <!-- Status + Button -->
+            <div class="col-md-12">
+              <div class="d-flex flex-column flex-sm-row gap-3 align-items-sm-center justify-content-between">
+                <div class="small">
+                  <div class="loading d-none">Sending…</div>
+                  <div class="error-message text-danger d-none"></div>
+                  <div class="sent-message text-success d-none">✅ Your message has been sent. Thank you!</div>
+                </div>
+
+                <button type="submit" class="btn btn-primary px-4 py-2" id="contactSubmitBtn">
+                  <span class="btn-text">Send Message</span>
+                  <span class="spinner-border spinner-border-sm ms-2 d-none" role="status" aria-hidden="true"></span>
+                </button>
+              </div>
             </div>
 
           </div>
-        </form><!-- End Contact Form -->
+        </form>
+
 
       </div>
 
@@ -1324,6 +1416,49 @@
 
     deliveryMethod.addEventListener("change", handleMethodChange);
     handleMethodChange();
+  </script>
+  <script>
+    (function () {
+      const form = document.querySelector(".php-email-form");
+      if (!form) return;
+
+      const msg = form.querySelector("#contactMessage");
+      const msgCount = form.querySelector("#msgCount");
+      const submitBtn = form.querySelector("#contactSubmitBtn");
+      const spinner = submitBtn?.querySelector(".spinner-border");
+      const loading = form.querySelector(".loading");
+      const errorBox = form.querySelector(".error-message");
+      const sentBox = form.querySelector(".sent-message");
+
+      // character counter
+      const updateCount = () => {
+        if (!msg || !msgCount) return;
+        msgCount.textContent = msg.value.length;
+      };
+      if (msg) {
+        updateCount();
+        msg.addEventListener("input", updateCount);
+      }
+
+      // bootstrap-like validation UI
+      form.addEventListener("submit", function (e) {
+        // hide old messages
+        if (errorBox) { errorBox.classList.add("d-none"); errorBox.textContent = ""; }
+        if (sentBox) sentBox.classList.add("d-none");
+
+        if (!form.checkValidity()) {
+          e.preventDefault();
+          e.stopPropagation();
+          form.classList.add("was-validated");
+          return;
+        }
+
+        // UI loading state (your existing php-email-form script may handle AJAX; this is just UI)
+        if (loading) loading.classList.remove("d-none");
+        if (spinner) spinner.classList.remove("d-none");
+        if (submitBtn) submitBtn.setAttribute("disabled", "disabled");
+      });
+    })();
   </script>
 
 </body>
