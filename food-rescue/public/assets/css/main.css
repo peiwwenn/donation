@@ -1837,3 +1837,12 @@ select.input-dropdown:invalid {
 select.input-dropdown option {
   color: #000;
 }
+
+#founders .swiper {
+  padding-bottom: 40px; /* makes space for dots */
+}
+
+#founders .founders-pagination {
+  position: relative;
+  margin-top: 16px;
+}
