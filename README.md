@@ -47,6 +47,17 @@ This leads to:
 - Usable items ending up in landfills
 The problem is not lack of resources — it is lack of efficient distribution.
 
+Besides, the core issue is not the lack of resources, but inefficient coordination between donors and recipients. Donors often:
+- Do not know which NGOs need specific items
+- Donate without urgency prioritisation
+- Experience slow or unclear communication
+
+Meanwhile, NGOs struggle with:
+- Managing incoming donations
+- Receiving irrelevant or excessive items
+- Lack of real-time matching systems
+This results in wasted resources and unmet needs.
+
 SDG alignment 
 Our solution supports:
 1. SDG 2 – Zero Hunger
@@ -76,6 +87,7 @@ By digitizing and centralizing the donation process, we reduce waste and increas
 ✅ NGO matching system
 ✅ Responsive and user-friendly interface
 ✅ Contact and support form
+✅ Scalable Cloud Architecture (Firebase Authentication, Cloud Firestore database, Google Maps API integration)
 
 4) Overview of Technologies used 
 Describe Google technologies used
